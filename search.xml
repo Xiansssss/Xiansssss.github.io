@@ -27,6 +27,31 @@
     </entry>
     
     
+    
+    <entry>
+      <title>ResearchGPT：Powerful tools for assisting you in reading research papers</title>
+      <link href="/2023/04/21/Intro%20to%20ResearchGPT/"/>
+      <url>/2023/04/21/Intro%20to%20ResearchGPT/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ResearchGPT"><a href="#ResearchGPT" class="headerlink" title="ResearchGPT"></a>ResearchGPT</h1><p>This is a flask app provides an interface to enable a conversation with a research paper. You can enter a link to a pdf hoseted online or upload your own pdf. The app will then extract the text from the pdf, create embeddings from the ext and use them with the openai api to generate a response to a question you ask. It will also return a source for the part of the text it used to generate the response and the page number.</p><p>Try the demo at: <a href="https://www.dara.chat/">https://www.dara.chat</a></p><p>GitHub repo: <a href="https://github.com/mukulpatnaik/researchgpt">https://github.com/mukulpatnaik/researchgpt</a></p><h2 id="interface-be-like"><a href="#interface-be-like" class="headerlink" title="interface be like:"></a>interface be like:</h2><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mukulpatnaik/researchgpt.git</span><br><span class="line">cd researchgpt</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure><h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>You need to have an openai api key and set it as the environment variable ‘OPENAI_API_KEY’.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python main-local.py</span><br></pre></td></tr></table></figure><h2 id="Google-Cloud-Deployment"><a href="#Google-Cloud-Deployment" class="headerlink" title="Google Cloud Deployment"></a>Google Cloud Deployment</h2><p>Follow the instructions here: <a href="https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service">https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service</a> Once you have the app.yaml file set up with your openai key and also have gcloud cli set up, you can deploy with:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud app deploy</span><br></pre></td></tr></table></figure><p>To stream logs:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud app logs tail</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Tools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
