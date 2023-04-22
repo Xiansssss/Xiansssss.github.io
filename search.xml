@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Introduction to Myblog</title>
+      <link href="/2023/04/21/Intro/"/>
+      <url>/2023/04/21/Intro/</url>
+      
+        <content type="html"><![CDATA[<p>This is an introduction to both my blog and myself.</p><h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><p>这是正文中的一段代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span> </span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Gossip </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Gossip </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
