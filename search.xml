@@ -4,9 +4,34 @@
   
     
     <entry>
+      <title>C++ learning record</title>
+      <link href="/2023/04/30/c++_record/"/>
+      <url>/2023/04/30/c++_record/</url>
+      
+        <content type="html"><![CDATA[<pre><code>                            ## C++个人笔记总结—王小龙读后笔记</code></pre><h3 id="基本点"><a href="#基本点" class="headerlink" title="基本点"></a>基本点</h3><p>C++是强类型语言，任何变量或函数遵循：先申明后使用的原则。同时它是静态语言：需要指定变量类型，编译速度快可靠性高。</p><p>操作符重载 函数重载</p><p>c++中结构与c不同：定义结构型变量时不用加struct关键字；结构内部可以定义成员函数；sizeof（结构）-》1</p><h3 id="内联-inline"><a href="#内联-inline" class="headerlink" title="内联 inline"></a>内联 inline</h3><p>C++ <strong>内联函数</strong>是通常与类一起使用。如果一个函数是内联的，那么在编译时，编译器会把该函数的代码副本放置在每个调用该函数的地方。</p><p>对内联函数进行任何修改，都需要重新编译函数的所有客户端，因为编译器需要重新更换一次所有的代码，否则将会继续使用旧的函数。</p><p>如果想把一个函数定义为内联函数，则需要在函数名前面放置关键字 <strong>inline</strong>，在调用函数之前需要对函数进行定义。如果已定义的函数多于一行，编译器会忽略 inline 限定符。</p><h3 id="c-的动态内存分配"><a href="#c-的动态内存分配" class="headerlink" title="c++的动态内存分配"></a>c++的动态内存分配</h3><p><a href="http://c.biancheng.net/view/206.html">http://c.biancheng.net/view/206.html</a></p><h3 id="C-之父的建议"><a href="#C-之父的建议" class="headerlink" title="C++之父的建议"></a>C++之父的建议</h3><p>1.少用宏，多用 const、enum 和 inline  原因：<a href="https://developer.aliyun.com/article/849684?spm=a2c6h.12873639.article-detail.29.71a47b95al0tZN&scm=20140722.ID_community">https://developer.aliyun.com/article/849684?spm=a2c6h.12873639.article-detail.29.71a47b95al0tZN&amp;scm=20140722.ID_community</a></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PAI 3.141519</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> PAI = <span class="number">3.14159</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR_FILE -1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR_MEM  -2</span></span><br><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">  ERROR_FILE = <span class="number">-1</span>,</span><br><span class="line">  ERROR_MEM = <span class="number">-2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="type">double</span> <span class="title">max</span> <span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2.变量随用随声明同时初始化。<br>3.少用 malloc&#x2F;free，多用 new&#x2F;delete。<a href="https://www.cnblogs.com/Allen-rg/p/6767182.html">https://www.cnblogs.com/Allen-rg/p/6767182.html</a><br>4.少用 C 风格的强制类型转换，多用类型转换运算符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">int</span> i = (<span class="type">int</span>)d;   <span class="comment">// C 风格的强制类型转换</span></span><br><span class="line"><span class="type">int</span> j = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(d);   <span class="comment">// 类型转换运算符</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>6.树立面向对象的编程思想。</p><h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><p>什么是对象</p><p>1.万物皆对象2.程序就是一组对象，对象之间通过消息交换信息3.类就是对对象的描述和抽象，对象就是类的具体化和实例化</p><p>通过类描述对象</p><p>属性:姓名、年龄、学号<br>行为:吃饭、睡觉、学习<br>类就是从属性和行为两个方面对对象进行抽象。</p><p>对象创建过程<br>分配内存-&gt;调用构造函数-&gt;调用类类型成员的构造函数-&gt;构造函数的代码</p><p>在一般情况下，堆的空间比栈大。栈是由编译器自动管理的内存空间，它的大小通常受限于操作系统或编译器的限制。而堆则是由程序员手动管理的内存空间，其大小取决于计算机的内存容量和操作系统对程序的内存使用限制。</p><p>在栈上分配的变量通常是局部变量，其生存期仅限于所在的函数调用过程中，一旦函数返回，变量所占用的内存就会被自动释放。而在堆上分配的变量则可以在整个程序的生命周期内使用，直到程序退出或被手动释放。</p><p>需要注意的是，由于堆的空间比较大，因此使用堆分配内存时需要注意内存泄漏和内存碎片等问题。而栈的空间虽然比较小，但由于其内存管理由编译器自动完成，因此使用栈分配内存时更加安全和简便。</p><p>类的声明与定义以及使用可以不在一个文件</p><p>如果同时有多种构造函数存在，则根据构造参数来确定调用哪个构造函数，既构造函数可 以通过构造参数实现重载<br>​<br>​<br>​</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ResearchGPT：Powerful tools for assisting you in reading research papers</title>
-      <link href="/2023/04/21/Intro%20to%20ResearchGPT/"/>
-      <url>/2023/04/21/Intro%20to%20ResearchGPT/</url>
+      <link href="/2023/04/28/Intro%20to%20ResearchGPT/"/>
+      <url>/2023/04/28/Intro%20to%20ResearchGPT/</url>
       
         <content type="html"><![CDATA[<h1 id="ResearchGPT"><a href="#ResearchGPT" class="headerlink" title="ResearchGPT"></a>ResearchGPT</h1><p>This is a flask app provides an interface to enable a conversation with a research paper. You can enter a link to a pdf hoseted online or upload your own pdf. The app will then extract the text from the pdf, create embeddings from the ext and use them with the openai api to generate a response to a question you ask. It will also return a source for the part of the text it used to generate the response and the page number.</p><p>Try the demo at: <a href="https://www.dara.chat/">https://www.dara.chat</a></p><p>GitHub repo: <a href="https://github.com/mukulpatnaik/researchgpt">https://github.com/mukulpatnaik/researchgpt</a></p><h2 id="interface-be-like"><a href="#interface-be-like" class="headerlink" title="interface be like:"></a>interface be like:</h2><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mukulpatnaik/researchgpt.git</span><br><span class="line">cd researchgpt</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure><h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>You need to have an openai api key and set it as the environment variable ‘OPENAI_API_KEY’.</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python main-local.py</span><br></pre></td></tr></table></figure><h2 id="Google-Cloud-Deployment"><a href="#Google-Cloud-Deployment" class="headerlink" title="Google Cloud Deployment"></a>Google Cloud Deployment</h2><p>Follow the instructions here: <a href="https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service">https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service</a> Once you have the app.yaml file set up with your openai key and also have gcloud cli set up, you can deploy with:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud app deploy</span><br></pre></td></tr></table></figure><p>To stream logs:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcloud app logs tail</span><br></pre></td></tr></table></figure>]]></content>
       
@@ -46,31 +71,6 @@
         <tags>
             
             <tag> Gossip </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>C++ learning record</title>
-      <link href="/2023/04/21/c++_record/"/>
-      <url>/2023/04/21/c++_record/</url>
-      
-        <content type="html"><![CDATA[<pre><code>                            ## C++个人笔记总结—王小龙读后笔记</code></pre><h3 id="基本点"><a href="#基本点" class="headerlink" title="基本点"></a>基本点</h3><p>C++是强类型语言，任何变量或函数遵循：先申明后使用的原则。同时它是静态语言：需要指定变量类型，编译速度快可靠性高。</p><p>操作符重载 函数重载</p><p>c++中结构与c不同：定义结构型变量时不用加struct关键字；结构内部可以定义成员函数；sizeof（结构）-》1</p><h3 id="内联-inline"><a href="#内联-inline" class="headerlink" title="内联 inline"></a>内联 inline</h3><p>C++ <strong>内联函数</strong>是通常与类一起使用。如果一个函数是内联的，那么在编译时，编译器会把该函数的代码副本放置在每个调用该函数的地方。</p><p>对内联函数进行任何修改，都需要重新编译函数的所有客户端，因为编译器需要重新更换一次所有的代码，否则将会继续使用旧的函数。</p><p>如果想把一个函数定义为内联函数，则需要在函数名前面放置关键字 <strong>inline</strong>，在调用函数之前需要对函数进行定义。如果已定义的函数多于一行，编译器会忽略 inline 限定符。</p><h3 id="c-的动态内存分配"><a href="#c-的动态内存分配" class="headerlink" title="c++的动态内存分配"></a>c++的动态内存分配</h3><p><a href="http://c.biancheng.net/view/206.html">http://c.biancheng.net/view/206.html</a></p><h3 id="C-之父的建议"><a href="#C-之父的建议" class="headerlink" title="C++之父的建议"></a>C++之父的建议</h3><p>1.少用宏，多用 const、enum 和 inline  原因：<a href="https://developer.aliyun.com/article/849684?spm=a2c6h.12873639.article-detail.29.71a47b95al0tZN&scm=20140722.ID_community">https://developer.aliyun.com/article/849684?spm=a2c6h.12873639.article-detail.29.71a47b95al0tZN&amp;scm=20140722.ID_community</a></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PAI 3.141519</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> PAI = <span class="number">3.14159</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR_FILE -1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR_MEM  -2</span></span><br><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">  ERROR_FILE = <span class="number">-1</span>,</span><br><span class="line">  ERROR_MEM = <span class="number">-2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="type">double</span> <span class="title">max</span> <span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2.变量随用随声明同时初始化。<br>3.少用 malloc&#x2F;free，多用 new&#x2F;delete。<a href="https://www.cnblogs.com/Allen-rg/p/6767182.html">https://www.cnblogs.com/Allen-rg/p/6767182.html</a><br>4.少用 C 风格的强制类型转换，多用类型转换运算符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">int</span> i = (<span class="type">int</span>)d;   <span class="comment">// C 风格的强制类型转换</span></span><br><span class="line"><span class="type">int</span> j = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(d);   <span class="comment">// 类型转换运算符</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>6.树立面向对象的编程思想。</p><h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><p>什么是对象</p><p>1.万物皆对象2.程序就是一组对象，对象之间通过消息交换信息3.类就是对对象的描述和抽象，对象就是类的具体化和实例化</p><p>通过类描述对象</p><p>属性:姓名、年龄、学号<br>行为:吃饭、睡觉、学习<br>类就是从属性和行为两个方面对对象进行抽象。</p><p>对象创建过程<br>分配内存-&gt;调用构造函数-&gt;调用类类型成员的构造函数-&gt;构造函数的代码</p><p>在一般情况下，堆的空间比栈大。栈是由编译器自动管理的内存空间，它的大小通常受限于操作系统或编译器的限制。而堆则是由程序员手动管理的内存空间，其大小取决于计算机的内存容量和操作系统对程序的内存使用限制。</p><p>在栈上分配的变量通常是局部变量，其生存期仅限于所在的函数调用过程中，一旦函数返回，变量所占用的内存就会被自动释放。而在堆上分配的变量则可以在整个程序的生命周期内使用，直到程序退出或被手动释放。</p><p>需要注意的是，由于堆的空间比较大，因此使用堆分配内存时需要注意内存泄漏和内存碎片等问题。而栈的空间虽然比较小，但由于其内存管理由编译器自动完成，因此使用栈分配内存时更加安全和简便。</p><p>类的声明与定义以及使用可以不在一个文件</p><p>如果同时有多种构造函数存在，则根据构造参数来确定调用哪个构造函数，既构造函数可 以通过构造参数实现重载<br>​<br>​<br>​</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> C++ </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
             
         </tags>
       
