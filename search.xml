@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>“test.md”</title>
+      <link href="/2023/05/09/%E2%80%9Ctest-md%E2%80%9D/"/>
+      <url>/2023/05/09/%E2%80%9Ctest-md%E2%80%9D/</url>
+      
+        <content type="html"><![CDATA[<p>time</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++ 南科大于仕琪老师</title>
+      <link href="/2023/05/09/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/"/>
+      <url>/2023/05/09/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/</url>
+      
+        <content type="html"><![CDATA[<pre><code>                            ## C++于老师课程随记</code></pre><p>###pointers and arrays</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// when pointer plus 1, it moves in 1 section/element(which depends on the pointer type) not 1 byte </span></span><br><span class="line"><span class="type">int</span> numbers[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span> *p = numbers + <span class="number">1</span>;</span><br></pre></td></tr></table></figure><p>32位机器地址位数32位即4bytes </p><p>64位机器地址位数64位即8bytes  </p><p>指针大小是由当前CPU运行模式的寻址位数决定</p><p>：</p><p><img src="/Users/Alan/blog/source/_posts/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/tupian.jpg" alt="tupian"></p><h3 id="dynamic-allocate-memory动态内存管理"><a href="#dynamic-allocate-memory动态内存管理" class="headerlink" title="dynamic allocate memory动态内存管理"></a>dynamic allocate memory动态内存管理</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++ learning record</title>
       <link href="/2023/04/30/c++_record/"/>
       <url>/2023/04/30/c++_record/</url>
