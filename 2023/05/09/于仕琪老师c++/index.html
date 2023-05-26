@@ -13,13 +13,11 @@
 <meta property="og:site_name" content="Xian&#39;Trial Ground">
 <meta property="og:description" content="## C++于老师课程随记  ###pointers and arrays 12345&#x2F;&#x2F; when pointer plus 1, it moves in 1 section&#x2F;element(which depends on the pointer type) not 1 byte int numbers[4] &#x3D; &amp;#123;0, 1,">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiansssss.github.io/Users/Alan/blog/source/_posts/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/tupian.jpg">
 <meta property="article:published_time" content="2023-05-09T07:00:00.000Z">
-<meta property="article:modified_time" content="2023-05-10T05:25:53.282Z">
+<meta property="article:modified_time" content="2023-05-11T01:49:04.970Z">
 <meta property="article:author" content="Xian">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiansssss.github.io/Users/Alan/blog/source/_posts/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/tupian.jpg">
     
     
       
@@ -100,7 +98,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2023/05/09/%E2%80%9Ctest-md%E2%80%9D/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2023/05/20/%E5%B8%B8%E8%AF%86/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2023/04/30/c++_record/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -191,16 +189,13 @@
 <p>64位机器地址位数64位即8bytes  </p>
 <p>指针大小是由当前CPU运行模式的寻址位数决定</p>
 <p>：</p>
-<p><img src="/Users/Alan/blog/source/_posts/%E4%BA%8E%E4%BB%95%E7%90%AA%E8%80%81%E5%B8%88c++/tupian.jpg" alt="tupian"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> numbers [<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span> *p = numbers; </span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(numbers) &lt;&lt; endl; <span class="comment">//4*sizeof(int)</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(p) &lt;&lt; endl; <span class="comment">// 4 or 8</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">double</span> *) &lt;&lt; endl; <span class="comment">// 4 or 8</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="dynamic-allocate-memory动态内存管理"><a href="#dynamic-allocate-memory动态内存管理" class="headerlink" title="dynamic allocate memory动态内存管理"></a>dynamic allocate memory动态内存管理</h3>
   </div>
 </article>
-
-    <div class="blog-post-comments">
-        <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the comments.</noscript>
-        </div>
-    </div>
 
 
 
@@ -370,18 +365,6 @@
 <!-- Cloudflare Analytics -->
 
 <!-- Disqus Comments -->
-
-    <script type="text/javascript">
-        var disqus_shortname = 'https-xiansssss-github-io';
-
-        (function(){
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        }());
-    </script>
 
 <!-- utterances Comments -->
 
