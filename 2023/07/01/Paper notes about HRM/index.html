@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#x2e;&amp;#x6e;&amp;#121;&amp;#x61;&amp;#x6d;&amp;#x73;&amp;#x75;&amp;#x72;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#x72;&amp;#117;&amp;#103;&amp;#46;&amp;#x6e;&amp;#108;) D">
+    <meta name="description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#46;&amp;#110;&amp;#x79;&amp;#x61;&amp;#x6d;&amp;#115;&amp;#117;&amp;#114;&amp;#101;&amp;#110;&amp;#x40;&amp;#114;&amp;#x75;&amp;#x67;&amp;#46;&amp;#x6e;&amp;#108;) D">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper notes about Human Reasoning Module">
 <meta property="og:url" content="https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/index.html">
 <meta property="og:site_name" content="Xian&#39;Trial Ground">
-<meta property="og:description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#x2e;&amp;#x6e;&amp;#121;&amp;#x61;&amp;#x6d;&amp;#x73;&amp;#x75;&amp;#x72;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#x72;&amp;#117;&amp;#103;&amp;#46;&amp;#x6e;&amp;#108;) D">
+<meta property="og:description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#46;&amp;#110;&amp;#x79;&amp;#x61;&amp;#x6d;&amp;#115;&amp;#117;&amp;#114;&amp;#101;&amp;#110;&amp;#x40;&amp;#114;&amp;#x75;&amp;#x67;&amp;#46;&amp;#x6e;&amp;#108;) D">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://xiansssss.github.io/HRM2.jpg">
 <meta property="og:image" content="https://xiansssss.github.io/HRM3.jpg">
@@ -183,7 +183,7 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h1 id="Paper-Human-Reasoning-Module"><a href="#Paper-Human-Reasoning-Module" class="headerlink" title="Paper: Human Reasoning Module"></a>Paper: Human Reasoning Module</h1><p>link:	<a target="_blank" rel="noopener" href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=32CFA430A83B3069A4239DEB74F04FAB?doi=10.1.1.714.1165&rep=rep1&type=pdf">human reasoning module</a></p>
-<p>Authors’Info:<br>Enkhbold Nyamsuren (<a href="mailto:&#x65;&#x2e;&#x6e;&#121;&#x61;&#x6d;&#x73;&#x75;&#x72;&#x65;&#x6e;&#64;&#x72;&#117;&#103;&#46;&#x6e;&#108;">&#x65;&#x2e;&#x6e;&#121;&#x61;&#x6d;&#x73;&#x75;&#x72;&#x65;&#x6e;&#64;&#x72;&#117;&#103;&#46;&#x6e;&#108;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands<br>Niels A. Taatgen (<a href="mailto:&#110;&#x2e;&#97;&#46;&#116;&#x61;&#97;&#116;&#103;&#x65;&#110;&#x40;&#114;&#x75;&#x67;&#x2e;&#x6e;&#x6c;">&#110;&#x2e;&#97;&#46;&#116;&#x61;&#97;&#116;&#103;&#x65;&#110;&#x40;&#114;&#x75;&#x67;&#x2e;&#x6e;&#x6c;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands</p>
+<p>Authors’Info:<br>Enkhbold Nyamsuren (<a href="mailto:&#x65;&#46;&#110;&#x79;&#x61;&#x6d;&#115;&#117;&#114;&#101;&#110;&#x40;&#114;&#x75;&#x67;&#46;&#x6e;&#108;">&#x65;&#46;&#110;&#x79;&#x61;&#x6d;&#115;&#117;&#114;&#101;&#110;&#x40;&#114;&#x75;&#x67;&#46;&#x6e;&#108;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands<br>Niels A. Taatgen (<a href="mailto:&#x6e;&#46;&#x61;&#x2e;&#116;&#97;&#97;&#116;&#103;&#x65;&#x6e;&#x40;&#x72;&#117;&#103;&#x2e;&#110;&#x6c;">&#x6e;&#46;&#x61;&#x2e;&#116;&#97;&#97;&#116;&#103;&#x65;&#x6e;&#x40;&#x72;&#117;&#103;&#x2e;&#110;&#x6c;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>这篇文章介绍了一种叫“Human Reasoning Module (HRM)”的框架，这是基于ACT-R实现的，ACT-R是一种人类认知结构的理论，这种认知模型可以预测诸如“学生思考算数问题的过程中，神经影像会展现出哪些活跃的部分”，详情可以参考此视频 <a target="_blank" rel="noopener" href="https://youtu.be/5_RqQ56MxPE">Adaptive Control of Thought – Rational ACT- R By: John R. Anderson</a>，而HRM可以简单理解为是ACT-R理论的computer simulation，同时也是对ACT-R理论的一个extension及工具实现 具体的几个模型如何工作和实现的再往下看.</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>HRM的程序性知识结构定义了人类逻辑的语法，公理模式和推理规则等，HRM是基于知识块的，并且主张通过previous experience和real-time info推理并解决问题. 接下来就是HRM试图去解决的关于human reasoning的几个方面：</p>
 <ul>
