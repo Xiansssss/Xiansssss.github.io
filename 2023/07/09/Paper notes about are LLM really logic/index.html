@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Paper: Are Large Language Models Really Good Logical Reasoners?link:	arxiv Authors’Info:Fangzhi Xu1,2*, Qika Lin1,2*, Jiawei Han1,3, Tianzhe Zhao1,3, Jun Liu2,3†, Erik Cambria4 1 School of Computer Sc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;">
+<meta property="og:url" content="https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/index.html">
+<meta property="og:site_name" content="Xian&#39;Trial Ground">
+<meta property="og:description" content="Paper: Are Large Language Models Really Good Logical Reasoners?link:	arxiv Authors’Info:Fangzhi Xu1,2*, Qika Lin1,2*, Jiawei Han1,3, Tianzhe Zhao1,3, Jun Liu2,3†, Erik Cambria4 1 School of Computer Sc">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiansssss.github.io/paper2.jpg">
+<meta property="og:image" content="https://xiansssss.github.io/paper2_2.jpg">
+<meta property="og:image" content="https://xiansssss.github.io/paper2_3.jpg">
+<meta property="og:image" content="https://xiansssss.github.io/paper2_4.jpg">
+<meta property="article:published_time" content="2023-07-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-13T06:22:21.402Z">
+<meta property="article:author" content="Xian">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiansssss.github.io/paper2.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/dragon.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/dragon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/07/01/Paper%20notes%20about%20HRM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&text=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&is_video=false&description=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;&body=Check out this article: https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&name=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&t=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paper-Are-Large-Language-Models-Really-Good-Logical-Reasoners"><span class="toc-number">1.</span> <span class="toc-text">Paper: Are Large Language Models Really Good Logical Reasoners?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preliminary"><span class="toc-number">1.3.</span> <span class="toc-text">Preliminary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluation-Details"><span class="toc-number">1.4.</span> <span class="toc-text">Evaluation Details</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overall-Experiments"><span class="toc-number">1.5.</span> <span class="toc-text">Overall Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fine-level-Evaluations"><span class="toc-number">1.6.</span> <span class="toc-text">Fine-level Evaluations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Are-LLMs-Rigorous-Logical-Reasoning"><span class="toc-number">1.7.</span> <span class="toc-text">Are LLMs Rigorous Logical Reasoning?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Are-LLMs-Self-aware-Logical-Reasoners"><span class="toc-number">1.8.</span> <span class="toc-text">Are LLMs Self-aware Logical Reasoners?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.9.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future-Directions"><span class="toc-number">1.10.</span> <span class="toc-text">Future Directions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataset"><span class="toc-number">1.11.</span> <span class="toc-text">dataset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%9B%9B%E4%B8%AA%E6%8C%87%E6%A0%87%E5%A6%82%E4%BD%95%E8%A1%A1%E9%87%8F%E5%8F%8A%E5%85%B7%E4%BD%93%E4%BE%8B%E5%AD%90"><span class="toc-number">1.12.</span> <span class="toc-text">关于四个指标如何衡量及具体例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8EHRM%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">1.13.</span> <span class="toc-text">与HRM的联系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">1.13.1.</span> <span class="toc-text">区别:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%90%8C%E7%82%B9%EF%BC%9A"><span class="toc-number">1.13.2.</span> <span class="toc-text">共同点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HRM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%A5%E8%AE%BA%E6%96%87%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AF%B9%E6%AF%94"><span class="toc-number">1.14.</span> <span class="toc-text">HRM数据集和该论文数据集对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E4%BB%8B%E7%BB%8DHRM%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%9A"><span class="toc-number">1.14.1.</span> <span class="toc-text">重新介绍HRM的数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.2.</span> <span class="toc-text">推理任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%85%B3%E7%B3%BB%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.3.</span> <span class="toc-text">空间关系任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.4.</span> <span class="toc-text">贝叶斯推理任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94HRM%E8%AE%BA%E6%96%87%E5%92%8CLLM%E8%AE%BA%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86-%E6%88%91%E7%9A%84%E7%90%86%E8%A7%A3%E6%98%AF"><span class="toc-number">1.14.5.</span> <span class="toc-text">对比HRM论文和LLM论文使用的数据集,我的理解是:</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xian</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-08T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Papers/">Papers</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/Papers/" rel="tag">Papers</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Paper-Are-Large-Language-Models-Really-Good-Logical-Reasoners"><a href="#Paper-Are-Large-Language-Models-Really-Good-Logical-Reasoners" class="headerlink" title="Paper: Are Large Language Models Really Good Logical Reasoners?"></a>Paper: Are Large Language Models Really Good Logical Reasoners?</h1><p>link:	<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.09841">arxiv</a></p>
+<p>Authors’Info:<br>Fangzhi Xu1,2*, Qika Lin1,2*, Jiawei Han1,3, Tianzhe Zhao1,3, Jun Liu2,3†, Erik Cambria4 1 School of Computer Science and Techonology, Xi’an Jiaotong University 2 Shaanxi Provincial Key Laboratory of Big Data Knowledge Engineering 3 National Engineering Lab for Big Data Analytics 4 School of Computer Science and Engineering, Nanyang Technological University <a href="mailto:&#76;&#101;&#111;&#x39;&#56;&#x31;&#49;&#48;&#54;&#x40;&#x73;&#x74;&#x75;&#46;&#120;&#x6a;&#x74;&#x75;&#46;&#x65;&#100;&#117;&#46;&#99;&#110;">&#76;&#101;&#111;&#x39;&#56;&#x31;&#49;&#48;&#54;&#x40;&#x73;&#x74;&#x75;&#46;&#120;&#x6a;&#x74;&#x75;&#46;&#x65;&#100;&#117;&#46;&#99;&#110;</a>, <a href="mailto:&#113;&#x69;&#107;&#x61;&#108;&#105;&#x6e;&#x40;&#x66;&#x6f;&#x78;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#113;&#x69;&#107;&#x61;&#108;&#105;&#x6e;&#x40;&#x66;&#x6f;&#x78;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a>, <a href="mailto:&#116;&#97;&#x72;&#97;&#x31;&#x32;&#x30;&#56;&#50;&#54;&#x30;&#x32;&#50;&#51;&#x40;&#x73;&#116;&#x75;&#x2e;&#x78;&#106;&#x74;&#117;&#46;&#101;&#100;&#x75;&#x2e;&#99;&#110;">&#116;&#97;&#x72;&#97;&#x31;&#x32;&#x30;&#56;&#50;&#54;&#x30;&#x32;&#50;&#51;&#x40;&#x73;&#116;&#x75;&#x2e;&#x78;&#106;&#x74;&#117;&#46;&#101;&#100;&#x75;&#x2e;&#99;&#110;</a>, <a href="mailto:&#x7a;&#x74;&#x7a;&#x38;&#55;&#x35;&#x38;&#64;&#102;&#111;&#120;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x7a;&#x74;&#x7a;&#x38;&#55;&#x35;&#x38;&#64;&#102;&#111;&#120;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>, <a href="mailto:&#x6c;&#x69;&#117;&#x6b;&#x65;&#x65;&#110;&#64;&#x78;&#x6a;&#x74;&#x75;&#46;&#x65;&#100;&#117;&#x2e;&#x63;&#x6e;">&#x6c;&#x69;&#117;&#x6b;&#x65;&#x65;&#110;&#64;&#x78;&#x6a;&#x74;&#x75;&#46;&#x65;&#100;&#117;&#x2e;&#x63;&#x6e;</a>, <a href="mailto:&#99;&#x61;&#x6d;&#x62;&#x72;&#x69;&#x61;&#64;&#x6e;&#x74;&#x75;&#x2e;&#x65;&#x64;&#x75;&#46;&#x73;&#103;">&#99;&#x61;&#x6d;&#x62;&#x72;&#x69;&#x61;&#64;&#x6e;&#x74;&#x75;&#x2e;&#x65;&#x64;&#x75;&#46;&#x73;&#103;</a></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>该研究旨在对大型语言模型（LLM）的逻辑推理能力进行全面评估，重点是演绎，归纳和演绎推理。作者选择了十五个典型的逻辑推理数据集, 他们分别在在zero-shot, one-shot, three-shot下评估了三个代表性的LLM（text-davinci-003，ChatGPT和BARD）。此外，他们还从客观和主观的角度提出了精细的评估，包括答案和解释。他们还引入了一个具有中性内容的新数据集，以衡量LLM的逻辑推理能力。最后从六个维度绘制了逻辑推理能力图，反映了LLM的优势和劣势，并提出了未来的发展方向。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文认为有很少工作从逻辑推理的角度对LLM进行研究，所以他们打算从几个方面去评估LLM<br>分别是deductive, inductive and abductive三种方式的的推理 区别可点此链接查看：<a target="_blank" rel="noopener" href="http://factmyth.com/deductive-inductive-and-abductive-reasoning-explained/#:~:text=The%20core%20concepts%20to%20remember,guesswork%2C%20involves%20reasoning%20toward%20possible">deductive, inductive and abductive</a></p>
+<p>所有用于评估的数据集分为4类分别是deductive, inductive, abductive and mixed-forms。其次当前评估LLM的指标不够多和全面，最多就是一些矩阵比如精确度来衡量，由于类似chatgpt这种LLM是与人交户性比较强的工具，所以需要加上一些subjective性质的指标，包括：answer accuracy, explaination correctness, explaination redundancy and explaination completeness这四种。由于LLM容易学到bias，所以很多情况下逻辑推理会受到previous bias影响，导致其不是真正的逻辑论断，因此也想从中立内容这方面对其进行一个测试。最后他们得出了一个完善的评估系统，包括六个维度，分别是Correct, Rigorous, Self-aware, Active, Oriented and No Hallucination.</p>
+<p>本文的一些贡献，大致是探索了LLM真正的逻辑推理能力，对逻辑推理能力的评估手段进行了一个系统性的升级，提供一些精细化而不是只用objective metrics的评估维度，提供了中立内容的数据集NeuLR。</p>
+<h2 id="Preliminary"><a href="#Preliminary" class="headerlink" title="Preliminary"></a>Preliminary</h2><p>逻辑推理简单来说就是基于给出的一些前提premise然后推理出conclusion，打个比方rule: Children of eight years old are all in primary school. • fact1&#x2F;premise1: Jordan is a child of eight years old. • fact2&#x2F;premise2: Jordan is in primary school. 这三条我们可以用其中的两条推出剩余的一条。</p>
+<p>首先deductive reasoning，可以理解为给出大前提，再给小前提就可以得出结论，比如说所有青少年都小于20岁（不严谨）+ 我是青少年， 即可得出：我小于20岁。作者说这是自上而下的 top-down</p>
+<p>其次inductive reasoning，也就是归纳的意思，即从特殊的现象中得出一套泛化的结论，比如说：我是人 + 有些人是雄性，那么可以得出：我有可能是雄性。不确定是因为归纳推理本身就是probabilistic，不是certain的，作者认为这是自下而上的也就是bottom-up。</p>
+<p>最后abductive reasoning，它也是probabilistic的，就是说从rule+一个前提得到一个可能性的结论，比如说我在上学 + 所有青少年都在上学，可以得出我可能是青少年，但是并不一定，所以abductive reasoning是和inductive reasoning的“可能性”特质很像的。</p>
+<h2 id="Evaluation-Details"><a href="#Evaluation-Details" class="headerlink" title="Evaluation Details"></a>Evaluation Details</h2><p>这部分就是文本使用的一些待评估模型，数据集和测试指标。</p>
+<ul>
+<li><strong>评估模型</strong></li>
+</ul>
+<p>首先是openai最早发布的LLM：text-davinci-003，然后是GPT-3.5-turbo，以及google的bard。</p>
+<ul>
+<li><strong>评估的数据集</strong></li>
+</ul>
+<p>本文选取了15个逻辑推理常用的数据集并将它们做了划分（因为本文有四个task）</p>
+<ul>
+<li><strong>评估的指标</strong></li>
+</ul>
+<p>有四个，我分别阐述一下</p>
+<p><strong>Answer Correctness</strong> 看生成的回答label是否为true，在生成式任务中只要意思相同就可以了，不需要token一致。</p>
+<p><strong>Explanation Correctness</strong> 这是一个主观的标准，就是看逻辑推理的过程中它的解释是否符合人的思维，能够合理的推断出结论</p>
+<p><strong>Explanation Completeness</strong> 我不太明白这个，但是大致的意思是正确答案能仅通过选中的facts推断出来</p>
+<p><strong>Explanation Redundancy</strong> 如其名就是逻辑推理的过程中被给到的facts太多了，比如说你两条facts就可以推断出这个结论但是我要用10条。</p>
+<h2 id="Overall-Experiments"><a href="#Overall-Experiments" class="headerlink" title="Overall Experiments"></a>Overall Experiments</h2><p>实验结果的一些展示，先放图：<img src="/paper2.jpg" alt="实验图"></p>
+<p>发现LLM在deductive reasoning方面做的比较好，inductive这方面的难度按理来说是最高的，另外few-shot上下文之间的学习并不一定能改善逻辑推理的能力，在其他非推理层面的NLP任务里反而是很有效果的。</p>
+<h2 id="Fine-level-Evaluations"><a href="#Fine-level-Evaluations" class="headerlink" title="Fine-level Evaluations"></a>Fine-level Evaluations</h2><p>最终各个模型在四个指标评估结果如下图，图脉络清晰我就不用文字加以赘述</p>
+<p><img src="/paper2_2.jpg" alt="paper2"></p>
+<h2 id="Are-LLMs-Rigorous-Logical-Reasoning"><a href="#Are-LLMs-Rigorous-Logical-Reasoning" class="headerlink" title="Are LLMs Rigorous Logical Reasoning?"></a>Are LLMs Rigorous Logical Reasoning?</h2><p>思考LLM真的能严密的进行逻辑推理吗<br>引用原文的话“LLMs are best at keeping the rigorous reasoning in the abductive setting, while they are weak in the inductive setting”</p>
+<h2 id="Are-LLMs-Self-aware-Logical-Reasoners"><a href="#Are-LLMs-Self-aware-Logical-Reasoners" class="headerlink" title="Are LLMs Self-aware Logical Reasoners?"></a>Are LLMs Self-aware Logical Reasoners?</h2><p>生成式任务中LLMs回答的冗余度还是相对分类任务来说较高的，因为模型可以从多个维度去回答，</p>
+<p>后续都是一些问题的回答，只不过都用数据作为答案展现出来了，比较多详情可点击论文查看。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>重述了一下之前强调本文使用的几个指标，衡量了几个任务，以及指出相应的逻辑推理包含的能力应该分为哪些。</p>
+<p>最后根据结果，text-davinci-003可以在deductive 和 mixed-form模式中取得较均衡的成绩，inductive reasoning不太好，以及在abductive reasoning中lazy，从综合角度看，chatgpt表现较弱，但是它在避免幻想这个层面做的比较好，在保持理性方面做的较好，因为毕竟是chat tool，但是推理不太好。bard能力相对强，但是冗余度比较高，所以LLMs在逻辑推理能力方面还是有相应的局限性，以及现在评估逻辑推理能力的指标不够全面，有待做的事情还有很多。</p>
+<h2 id="Future-Directions"><a href="#Future-Directions" class="headerlink" title="Future Directions"></a>Future Directions</h2><p>对未来的一些展望，比如加强薄弱点，也就是inductive reasoning的能力，提高LLM的认知边界，也就是老师说的cognitive science层面的东西，需要self-aware的能力，以及要适应真实世界的一些场景的问题等等。</p>
+<h2 id="dataset"><a href="#dataset" class="headerlink" title="dataset"></a>dataset</h2><p>totally there are 15 datasets: and I’ll summarize how are they constructed<br><img src="/paper2_3.jpg"></p>
+<ul>
+<li><p>部分数据集是在已发表研究的基础上构建的。比如LogiQA 1.0和2.0是在LogiQA的基础上新增了样本扩充而来。</p>
+</li>
+<li><p>部分数据集直接引用了已发表的研究论文中的数据集,比如bAbI-15和16、α-NLI等。</p>
+</li>
+<li><p>部分数据集像LogiQA2NLI是论文作者通过从其他数据集中筛选样本构建的。</p>
+</li>
+</ul>
+<p>下方列举一些数据集的样本： 比如说在logicQA dataset里<br><img src="/paper2_4.jpg"><br>训练集验证集和测试集中每一条数据都是由空行+正确选择+背景+问题+四个选项构成<br>可以看出背景描述中都使用了逻辑连接词比如第一条‘so’，旨在训练模型逻辑推理的能力<br>下载详细数据可点击：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/lgw863/LogiQA-dataset/master/Train.txt">github&#x2F;repo</a></p>
+<p>构建的方法揣测：</p>
+<ul>
+<li>基于语料库从大规模语料库中抽取自然语言语句，使用自然语言推理模型预测句子间的逻辑关系,生成句子对人工检查过滤关系预测错误的样本</li>
+<li>基于知识图谱从知识图谱中提取实体和事实三元组,转换为自然语言描述，抽取且转换两三元组,构建含有逻辑关系的句子对人工检查过滤无意义的样本</li>
+</ul>
+<h2 id="关于四个指标如何衡量及具体例子"><a href="#关于四个指标如何衡量及具体例子" class="headerlink" title="关于四个指标如何衡量及具体例子"></a>关于四个指标如何衡量及具体例子</h2><ul>
+<li>Answer Correctness:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">前提:猫和狮子都属于猫科动物</span><br><span class="line">问题:老虎属于猫科动物吗?</span><br><span class="line">回答:是</span><br><span class="line"></span><br><span class="line">判断:老虎属于猫科,回答正确</span><br></pre></td></tr></table></figure>
+<p>可以由模型自动判断生成回答的正确性,与ground truth对比。</p>
+<ul>
+<li>Explanation Correctness:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">前提:兔子是噪音动物,噪音动物都是扁平头骨动物</span><br><span class="line">问题:兔子是否扁平头骨?</span><br><span class="line">解释:兔子属于噪音动物,噪音动物属于扁平头骨动物,所以可以推断兔子是扁平头骨。</span><br><span class="line"></span><br><span class="line">判断:基于知识图谱关系的合理解释。</span><br></pre></td></tr></table></figure>
+<p>这里可能是作者团队人为根据解释是否符合人类逻辑推理进行打分，因为该评价指标为subjective，但是在论文中我没有找到明确说明的地方。</p>
+<ul>
+<li>Explanation Redundancy:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">前提:猫是肉食性动物,猫吃老鼠,猫有尖锐爪牙。</span><br><span class="line">问题:猫的食物是什么?</span><br><span class="line">解释:猫是肉食性动物,猫是肉食性动物,猫吃老鼠......</span><br><span class="line"></span><br><span class="line">判断:重复提到“猫是肉食性动物”,存在冗余</span><br></pre></td></tr></table></figure>
+<p>可以通过自动方法检测重复前提,进行冗余判断。<br>例如基于注意力机制或匹配网络判定重复。</p>
+<ul>
+<li>Explanation Completeness:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">前提:鲸鱼属于海洋哺乳动物</span><br><span class="line">问题:鲸鱼的生存环境是?</span><br><span class="line">解释:鲸鱼属于哺乳动物。</span><br><span class="line"></span><br><span class="line">判断:缺少“海洋”关键信息,解释不完整。</span><br></pre></td></tr></table></figure>
+
+<p>可以使用问答模型或信息检索自动判断解释是否可从前提完整推导。</p>
+<h2 id="与HRM的联系"><a href="#与HRM的联系" class="headerlink" title="与HRM的联系"></a>与HRM的联系</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别:"></a>区别:</h3><p>研究动机不同</p>
+<ul>
+<li>“Are LLM Really Logical Reasoners”专注评估LLM的逻辑推理能力</li>
+<li>“Human Reasoning Module”提出一种增强LLM逻辑推理的方法</li>
+</ul>
+<p>评估数据集不同</p>
+<ul>
+<li>前者使用多样化的逻辑推理数据集</li>
+</ul>
+<p>方法不同</p>
+<ul>
+<li>前者只评估模型现有能力</li>
+<li>后者提出了人类推理模块来增强模型</li>
+</ul>
+<h3 id="共同点："><a href="#共同点：" class="headerlink" title="共同点："></a>共同点：</h3><ul>
+<li><p>都关注提高LLM的逻辑推理能力</p>
+</li>
+<li><p>都构建了特定的评估数据集</p>
+</li>
+<li><p>都从理性和一致性等方面分析模型输出</p>
+</li>
+<li><p>都validation了模型在逻辑推理任务上的局限性</p>
+</li>
+<li><p>都提出了未来增强模型逻辑推理的方向</p>
+</li>
+</ul>
+<h2 id="HRM数据集和该论文数据集对比"><a href="#HRM数据集和该论文数据集对比" class="headerlink" title="HRM数据集和该论文数据集对比"></a>HRM数据集和该论文数据集对比</h2><h3 id="重新介绍HRM的数据集："><a href="#重新介绍HRM的数据集：" class="headerlink" title="重新介绍HRM的数据集："></a><strong>重新介绍HRM的数据集：</strong></h3><h3 id="推理任务模型"><a href="#推理任务模型" class="headerlink" title="推理任务模型"></a>推理任务模型</h3><p>这个模型使用的数据集来自Cummins等人的研究,包含16个因果关系句子,以及对应4种论证形式的样本,例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">句子:&quot;如果踩下刹车,汽车会减速。&quot;</span><br><span class="line"></span><br><span class="line">论证形式:</span><br><span class="line">Modus Ponens:&quot;踩下了刹车,因此汽车减速了。&quot;</span><br><span class="line">Modus Tollens:&quot;汽车没有减速,因此刹车没有被踩下。&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="空间关系任务模型"><a href="#空间关系任务模型" class="headerlink" title="空间关系任务模型"></a>空间关系任务模型</h3><p>这个模型使用的样本为判断两个物体间关系的空间推理题。例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">前提1:B 在 A 的右边</span><br><span class="line">前提2:C 在 B 的左边</span><br><span class="line">问题:D和E之间的关系是?</span><br></pre></td></tr></table></figure>
+
+<h3 id="贝叶斯推理任务模型"><a href="#贝叶斯推理任务模型" class="headerlink" title="贝叶斯推理任务模型"></a>贝叶斯推理任务模型</h3><p>该模型使用”栓片”(blicket)实验中的样本。给出一些木块,判断哪些是”栓片”,具有让检测器激活的因果能力。例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">训练阶段:</span><br><span class="line">块A放在检测器上,检测器激活。</span><br><span class="line">块B放在检测器上,检测器未激活。</span><br><span class="line"></span><br><span class="line">测试阶段:</span><br><span class="line">块C放在检测器上,检测器激活。</span><br><span class="line">判断块C是否为&quot;栓片&quot;?</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="对比HRM论文和LLM论文使用的数据集-我的理解是"><a href="#对比HRM论文和LLM论文使用的数据集-我的理解是" class="headerlink" title="对比HRM论文和LLM论文使用的数据集,我的理解是:"></a>对比HRM论文和LLM论文使用的数据集,我的理解是:</h3><ul>
+<li>数据集规模不同</li>
+</ul>
+<p>HRM论文的模型验证数据集规模相对更小。例如第一个模型只使用了16个样本。</p>
+<p>LLM论文使用了更大规模的公开逻辑推理数据集,一共15个,每个大约数百个样本。</p>
+<ul>
+<li>数据集构建不同</li>
+</ul>
+<p>HRM论文中的样本来源于相关的心理学实验研究。</p>
+<p>LLM论文使用的大部分是已发表的数据集。</p>
+<ul>
+<li>数据集范围不同</li>
+</ul>
+<p>HRM论文使用的样本类型窄一些,每篇只关注一类推理。</p>
+<p>LLM论文数据集涵盖演绎、归纳和假说等多类型推理。</p>
+<ul>
+<li>覆盖不同维度</li>
+</ul>
+<p>HRM论文数据集更侧重推理过程。</p>
+<p>LLM论文数据集侧重结果的正确性。</p>
+<ul>
+<li>评估目标不同</li>
+</ul>
+<p>HRM论文数据集用于评估认知过程建模的符合度。</p>
+<p>LLM论文数据集用于直接评估模型推理能力。</p>
+<p>总体来说,HRM论文中使用的数据集更小规模、窄范围,但提供了丰富的过程信息,适合评估认知模型。LLM论文数据集则更大规模、综合,侧重结果评估,适合直接判断模型能力。两者服务于不同的研究目的。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paper-Are-Large-Language-Models-Really-Good-Logical-Reasoners"><span class="toc-number">1.</span> <span class="toc-text">Paper: Are Large Language Models Really Good Logical Reasoners?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preliminary"><span class="toc-number">1.3.</span> <span class="toc-text">Preliminary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluation-Details"><span class="toc-number">1.4.</span> <span class="toc-text">Evaluation Details</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overall-Experiments"><span class="toc-number">1.5.</span> <span class="toc-text">Overall Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fine-level-Evaluations"><span class="toc-number">1.6.</span> <span class="toc-text">Fine-level Evaluations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Are-LLMs-Rigorous-Logical-Reasoning"><span class="toc-number">1.7.</span> <span class="toc-text">Are LLMs Rigorous Logical Reasoning?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Are-LLMs-Self-aware-Logical-Reasoners"><span class="toc-number">1.8.</span> <span class="toc-text">Are LLMs Self-aware Logical Reasoners?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.9.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future-Directions"><span class="toc-number">1.10.</span> <span class="toc-text">Future Directions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataset"><span class="toc-number">1.11.</span> <span class="toc-text">dataset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%9B%9B%E4%B8%AA%E6%8C%87%E6%A0%87%E5%A6%82%E4%BD%95%E8%A1%A1%E9%87%8F%E5%8F%8A%E5%85%B7%E4%BD%93%E4%BE%8B%E5%AD%90"><span class="toc-number">1.12.</span> <span class="toc-text">关于四个指标如何衡量及具体例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8EHRM%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">1.13.</span> <span class="toc-text">与HRM的联系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">1.13.1.</span> <span class="toc-text">区别:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E5%90%8C%E7%82%B9%EF%BC%9A"><span class="toc-number">1.13.2.</span> <span class="toc-text">共同点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HRM%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%A5%E8%AE%BA%E6%96%87%E6%95%B0%E6%8D%AE%E9%9B%86%E5%AF%B9%E6%AF%94"><span class="toc-number">1.14.</span> <span class="toc-text">HRM数据集和该论文数据集对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E4%BB%8B%E7%BB%8DHRM%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%9A"><span class="toc-number">1.14.1.</span> <span class="toc-text">重新介绍HRM的数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.2.</span> <span class="toc-text">推理任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%85%B3%E7%B3%BB%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.3.</span> <span class="toc-text">空间关系任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E7%90%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.4.</span> <span class="toc-text">贝叶斯推理任务模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94HRM%E8%AE%BA%E6%96%87%E5%92%8CLLM%E8%AE%BA%E6%96%87%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86-%E6%88%91%E7%9A%84%E7%90%86%E8%A7%A3%E6%98%AF"><span class="toc-number">1.14.5.</span> <span class="toc-text">对比HRM论文和LLM论文使用的数据集,我的理解是:</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&text=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&is_video=false&description=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;&body=Check out this article: https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&title=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&name=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/&t=Paper notes about &lt;Are Large Language Models Really Good Logical Reasoners?&gt;"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Xian
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/tags/">Tag</a></li><!--
+    --><!--
+      --><li><a href="/categories/">Category</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+    --><!--
+      --><li><a href="/URL">LINK_NAME</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <!-- <span class="post-meta-divider">|</span> -->
+          <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span> -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec3a9556589a44fee5433ef79dd48591";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

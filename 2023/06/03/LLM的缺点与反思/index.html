@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Some remarks on Large Language ModelsYoav Goldberg, January 2023Audience: I assume you heard of chatGPT, maybe played with it a little, and was imressed by it (or tried very hard not to be). And that">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Some remarks on Large Language Models">
+<meta property="og:url" content="https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/index.html">
+<meta property="og:site_name" content="Xian&#39;Trial Ground">
+<meta property="og:description" content="Some remarks on Large Language ModelsYoav Goldberg, January 2023Audience: I assume you heard of chatGPT, maybe played with it a little, and was imressed by it (or tried very hard not to be). And that">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-05T02:32:01.471Z">
+<meta property="article:author" content="Xian">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/dragon.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/dragon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Some remarks on Large Language Models</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/06/04/%E5%AE%9E%E4%B9%A0%E4%BB%BB%E5%8A%A1LLM%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90%E5%92%8C%E6%80%9D%E8%80%83/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/01/BARD_API/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&text=Some remarks on Large Language Models"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&is_video=false&description=Some remarks on Large Language Models"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Some remarks on Large Language Models&body=Check out this article: https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&name=Some remarks on Large Language Models&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&t=Some remarks on Large Language Models"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Some-remarks-on-Large-Language-Models"><span class="toc-number">1.</span> <span class="toc-text">Some remarks on Large Language Models</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Yoav-Goldberg-January-2023"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Yoav Goldberg, January 2023</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-number">1.1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perfect-Language-Modeling-is-AI-Complete"><span class="toc-number">1.2.</span> <span class="toc-text">Perfect Language Modeling is AI-Complete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-large-language-model-won%E2%80%99t-solve-everything-x2F-anything"><span class="toc-number">1.3.</span> <span class="toc-text">Building a large language model won’t solve everything &#x2F; anything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Natural-vs-Currated-Lanagueg-Modeling"><span class="toc-number">1.4.</span> <span class="toc-text">Natural vs Currated Lanagueg Modeling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What%E2%80%99s-still-missing"><span class="toc-number">1.5.</span> <span class="toc-text">What’s still missing?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Common-yet-boring-arguments"><span class="toc-number">1.5.1.</span> <span class="toc-text">Common-yet-boring arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So-what%E2%80%99s-missing-x2F-what-are-some-real-limitations"><span class="toc-number">1.6.</span> <span class="toc-text">So what’s missing &#x2F; what are some real limitations?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.7.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Some remarks on Large Language Models
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xian</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-02T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-06-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/LLM/">LLM</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/LLM/" rel="tag">LLM</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Some-remarks-on-Large-Language-Models"><a href="#Some-remarks-on-Large-Language-Models" class="headerlink" title="Some remarks on Large Language Models"></a>Some remarks on Large Language Models</h1><h4 id="Yoav-Goldberg-January-2023"><a href="#Yoav-Goldberg-January-2023" class="headerlink" title="Yoav Goldberg, January 2023"></a>Yoav Goldberg, January 2023</h4><p><strong>Audience:</strong> I assume you heard of chatGPT, maybe played with it a little, and was imressed by it (or tried very hard not to be). And that you also heard that it is “a large language model”. And maybe that it “solved natural language understanding”. Here is a short personal perspective of my thoughts of this (and similar) models, and where we stand with respect to language understanding.</p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Around 2014-2017, right within the rise of neural-network based methods for NLP, I was giving a semi-academic-semi-popsci lecture, revolving around the story that <strong>achieving perfect language modeling is equivalent to being as intelligent as a human</strong>. Somewhere around the same time I was also asked in an academic panel “what would you do if you were given infinite compute and no need to worry about labour costs” to which I cockily responded <strong>“I would train a really huge language model, just to show that it doesn’t solve everything!”</strong>. Well, this response aged badly! or did it? And how does it co-exist with my perfect-language-modeling-as-intelligence story I was also telling at the same time?</p>
+<h2 id="Perfect-Language-Modeling-is-AI-Complete"><a href="#Perfect-Language-Modeling-is-AI-Complete" class="headerlink" title="Perfect Language Modeling is AI-Complete"></a>Perfect Language Modeling is AI-Complete</h2><p>My pop-sci-meets-intro-NLP talk (“teaching computers to understand language”) was centered around Claude Shannon’s “guessing game” and the idea of language modeling. It started with AI-for-games, then quickly switched to “a different kind of game” invented by Shannon in 1951: the game of “guessing the next letter”. The game operator chooses some text and a cutting point within the text, and hides the end. The players need to guess the first hidden letter in the smallest number of gueses. </p>
+<p>I gave a few examples of this game, that demonstrate various kinds of linguistic knowledge that are needed in order to perform well in it, at different levels of linguistic understanding (from morphology through various levels of syntax, smantics, pragmatics and sociolinguistics).<br>And then I said that humans are great at this game without even practicing, and that’s it is hard for them to get better at it, which is why they find it to be a not-great game. </p>
+<p>I then said that computers kinda suck at this game compared to humans, but that by teaching them to play it, we gain a lot of implicit knowledge of language. And that there is a long way to go, but that there was some steady progress: this is how machine translation works today! </p>
+<p>I also said that computers are still not very good, and that this is understandable: the game is “AI-complete”: really playing the game “at human level” would mean solving every other problem of AI, and exhibiting human-like intelligence. To see why this is true, consider that the game entails completing <em>any</em> text prefix, including very long ones, including dialogs, including every possible conversation prefix, including every description of experience that can be expressed in human language, including every answer to every question that can be asked on any topic or situation, including advanced mathmatics, including philosophy, and so on. In short, to play it well, you need to <em>understand</em> the text, understand the situation described in the text, <em>imagine</em> yourself in the situation, and then to <em>respond</em>. It really mimicks the human experience and thought. (Yes, there could be several objections to this argument, for example humans may also need to ask questions about images or scenes or other perceptual inputs that the model cannot see. But I think you get the point.)</p>
+<p>So that was the the story I told about Shannon’s guessing game (aka “language modeling”) and how playing it at human level entails human level intelligence.</p>
+<h2 id="Building-a-large-language-model-won’t-solve-everything-x2F-anything"><a href="#Building-a-large-language-model-won’t-solve-everything-x2F-anything" class="headerlink" title="Building a large language model won’t solve everything &#x2F; anything"></a>Building a large language model won’t solve everything &#x2F; anything</h2><p>Now, if obtaining the ability of perfect language modeling entails intelligence (“AI-complete”), why did I maintain that building the largest possible language model won’t “solve everything”? and was I wrong? </p>
+<p>The answer is that I didn’t think building a very large language model based on the then-existing tech (which was then just shifting between RNNs&#x2F;LSTMs and the Transformer) will get us nowhere even close to having “perfect language modeling”.</p>
+<p>Was I wrong? sort of. I was definitely surprised by the abilities demonstrated by large language models. There turned out to be a phase shift somewhere between 60B parameters and 175B parameters, that made language models super impressive. They do a lot more than what I thought a language model trained on text and based on RNNs&#x2F;LSTMs&#x2F;Transformers could ever do. They certainly do all the things I had in mind when I cockily said they will “not solve everything”. </p>
+<p>Yes, current-day language models (first release of chatGPT) did “solve” all of the things in the set of language understanding problems I was implicitly considering back then. So in that sense, I was wrong. But in another sense, no, it did not solve <em>everything</em>. Not yet, at least. Also, the performance of current day language-models is not obtained only by language modeling in the sense I had in mind then. I think this is important, and I will elaborate on it a bit soon.</p>
+<p>In what follows I will briefly discuss the difference I see between current-day-LMs and what was then perceived to be an LM, and then briefly go through some of the things I think are not yet “solved” by the large LMs. I will also mention some arguments that I find to be correct but irrelevant &#x2F; uninteresting.</p>
+<h2 id="Natural-vs-Currated-Lanagueg-Modeling"><a href="#Natural-vs-Currated-Lanagueg-Modeling" class="headerlink" title="Natural vs Currated Lanagueg Modeling"></a>Natural vs Currated Lanagueg Modeling</h2><p>What do I mean by “The performance of current days language models are not obtained by language modeling”? The first demonstration of large language models (let’s say at the 170B parameters level, a-la GPT-3) was (to the best of our knowledge) trained on naturally occuring text data: text found in books, crawled from the internet, found in social networks, etc. Later replications (BLOOM, OPT) also used similar data. This is very close to Shannon’s game, and also what most people in the past few decades thought of as ‘language modeling’. These models already brought remarkable performance. But chatGPT is different.</p>
+<p>What’s different in chatGPT? There are three conceptual steps between GPT-3 and chatGPT:<br>Instructions, code, RLHF. The last one is, I think, the least interesting despite getting the most attention, but all are interesting. Here’s my hand-wavy explanation. Maybe some day I will turn it into a more formal argument. I hope you get an intuition out of it though.</p>
+<p>Training on “text alone” like a “traditional language model” does have some clear theoretical limitations. Most notably, it doesn’t have a connection to anything “external to the text”, and hence cannot have access to “meaning” or to “communicative intent”. Another way to say it is that the model is “not grounded”. The symbols the model operates on are just symbols, and while they can stand in relation to one another, they do not “ground” to any real-world item. So we can know the <em>symbol</em> “blue”, but there is no real-world concept behind it.</p>
+<p>In <strong>instruction tuning</strong> the model trainers stopped training on just “found” data, and started trainign on also on specific human-created data (this is known in machine-learning circles as “supervised learning”, e.g. learning from annotated examples), in addition to the found one. For example, the human annotators would write something like “please summarize this text”, followed by some text they got, followed by a summary they produced of this text. Or, they may write “translate this text into a formal language”, followed by some text, followed by formal language. They would create many instructions of these kind (many summaries, many translations, etc), for many different “tasks”. And then these will be added to the model’s training data.<br><strong>Why is this significant?</strong> At the core the model is still doing language modeling, right? learning to predict the next word, based on text alone? Sure, but here the human annotators inject some level of grounding to the text. Some symbols (“summarize”, “translate”, “formal”) are used in a consistent way together with the concept&#x2F;task they denote. And they always appear in the beginning of the text. This make these symbols (or the “instructions”) in some loose sense external to the rest of the data, making the act of producing a summary grounded to the human concept of “summary”. Or in other words, this helps the model learn the <em>communicative intent</em> of the a user who asks for a “summary” in its “instruction”.<br><strong>An objection</strong> here would be that such cases likely naturally occur already in large text collections, and the model already learned from them, so what is new here? <strong>I argue</strong> that it might be much easier to learn from direct instructions like these than it is to learn from non-instruction data (think of a direct statement like “this is a dog” vs needing to infer from over-hearing people talk about dogs). And that by shifting the distribution of the training data towards these annotated cases, substantially alter how the model acts, and the amount of “grounding” it has. And that maybe with explicit instructions data, we can use much less training text compared to what was needed without them. (I promised you hand waving didn’t I?)</p>
+<p>Additionally, the latest wave of models is also trained on <strong>programming language code</strong> data, and specifically data that contains both natural language instructions or descriptions (in the form of code comments) and the corresponding programming language code.<br><strong>Why is this significant?</strong> This produced another very direct form of <em>grounding</em>. Here, we have two separate systems in the stream of text: one of them is the human language, and the other is the programming language. And we obsere the direct interaction between these two systems: the human language describes concepts (or <em>intents</em>), which are then <em>realized</em> in the form of the corresponding programs. This is now a quite explicit “form to meaning pairing”. We can certainly learn more from it than what we could learn “from form alone”. (Also, I hypothesize that latest models are also trained on <em>execution</em>: pairs of programs and their outputs. This is an even stronger form of grounding: denotations). This is now very far from “just” language modeling.</p>
+<p>Finally, <strong>RLHF, or “RL with Human Feedback”.</strong> This is a fancy way of saying that the model now observes two humans in a conversation, one playing the role of a user, and another playing the role of “the AI”, demonstrating how the AI should respond in different situations. This clearly helps the model learn how dialogs work, and how to keep track of information across dialog states (something that is very hard to learn from just “found” data). And the instructions to the humans are also the source of all the “It is not appropriate to…” and other formulaic &#x2F; templatic responses we observe from the model. It is a way to train to “behave nicely” by demonstration.</p>
+<p>ChatGPT has all three of these, if not more. This is why I find it to be very different from “traditional” language models, why it may not “obey” some of the limitations we (or I) expect to from language models, and why it performs so much better on many tasks: it is a <em>supervised model</em>, with <em>access to an external modality</em>, which is also trained explicitly by demonstration to <em>follow a large set of instructions</em> given in dialog form.</p>
+<h2 id="What’s-still-missing"><a href="#What’s-still-missing" class="headerlink" title="What’s still missing?"></a>What’s still missing?</h2><h3 id="Common-yet-boring-arguments"><a href="#Common-yet-boring-arguments" class="headerlink" title="Common-yet-boring arguments"></a>Common-yet-boring arguments</h3><p>There are a bunch of commonly occuring arguments about language models, which I find to be true but uninspiring &#x2F; irrelevant to my discussion here:</p>
+<ul>
+<li>They are <strong>wasetful</strong>, training them is very expensive, using them is very expensive. <ul>
+<li>Yes, this is certainly true today. But things get cheaper over time. Also, let’s put things in perspective: yes, it is enviromentally costly, but we aren’t training that many of them, and the total cost is miniscule compared to all the other energy consumptions we humans do. And, I am also not sure what the environmental argument has to to with the questions of “are these things interesting”, “are these things useful”, etc. It’s an economic question.</li>
+</ul>
+</li>
+<li>The models encode many <strong>biases</strong> and <strong>stereotypes</strong>. <ul>
+<li>Well, sure they do. They model observed human’s language, and we humans are terrible beings, we are biased and are constantly stereotyping. This means we need to be careful when applying these models to real-world tasks, but it doesn’t make them less valid, useful or interesting from a scientiic perspective.</li>
+</ul>
+</li>
+<li>The models <strong>don’t <em>really</em> understand</strong> language. <ul>
+<li>Sure. They don’t. So what? Let’s focus on what they do manage to do, and maybe try to improve where they don’t?</li>
+</ul>
+</li>
+<li>These models <strong>will never <em>really</em> understand language.</strong> <ul>
+<li>Again, so what? There are parts they clearly cover very well. Let’s look at those? Or don’t look at them if you don’t care about these aspects. Those who want to <em>really</em> <em>understand</em> language may indeed prefer to look elsewhere. I am happy with approximate understanding.</li>
+</ul>
+</li>
+<li>The models <strong>do not understand language like humans do</strong>. <ul>
+<li>Duh? they are not humans? Of course they differ in some of their mechanisms. They still can tell us a lot about language structure. And for what they don’t tell us, we can look elsewhere.</li>
+</ul>
+</li>
+<li>You <strong>cannot learn anything meaningful based only on form</strong>:<ul>
+<li>But it is not trained only on form, see section above.</li>
+</ul>
+</li>
+<li>It <strong>only connects pieces its seen before</strong> according to some statistics.<ul>
+<li>…And isn’t it <strong>magnificent</strong> that “statistics” can get you so far? The large models connect things in a very powerful way. Also, consider how many <em>terribly wrong</em> ways there are to connect words and phrases from the corpus according to statistics. And how many such ways the models manage to avoid, and somehow choose “meaningful” ones. I find this utterly remarkable.</li>
+</ul>
+</li>
+<li>We <strong>do not know the effects these things may have on society:</strong><ul>
+<li>This is true about any new tech &#x2F; new discovery. Let’s find out. We can try and be careful about it. But that doesn’t make the thing less interesting &#x2F; less effective &#x2F; less worthy of study. It just adds one additional aspect worth studying.</li>
+</ul>
+</li>
+<li><strong>The models don’t cite their sources:</strong> <ul>
+<li>Indeed they don’t. But… so what? I can see why you would like that in certain kinds of applications, and you certainly want the models to not bulshit you, and maybe you want to be able to <em>verify</em> that they don’t bulshit you, but these are all not really related to the core of what language models are &#x2F; this is not the right question to ask, in my opinion. After all, humans don’t really “cite their sources” in the real sense, we rarely attribute our knowledge to a specific single source, and if we do, we very often do it as a rationalization, or in a very deliberate process of first finding a source and then citing it. This can be replicated. From an application perspective (say, if we want to develop a search system, or a paper writing system, or a general-purpose question answering system), people can certainly work on linking utterances to sources, either through the generation process or in a post-processing step, or on setups where you first retrieve and then generate. And many people do. But this is not really related to language understanding. What <strong>is</strong> interesting though, and what I find to be a more constructive thing to ask for, is (a) how do we separate “core” knowledge about language and reasoning, from specific factual knowledge about “things”; and (b) how do we enable knowledge of knowledge (see below).</li>
+</ul>
+</li>
+</ul>
+<h2 id="So-what’s-missing-x2F-what-are-some-real-limitations"><a href="#So-what’s-missing-x2F-what-are-some-real-limitations" class="headerlink" title="So what’s missing &#x2F; what are some real limitations?"></a>So what’s missing &#x2F; what are some real limitations?</h2><p>Here is an informal and incomplete list of things that I think are currently challenging in current “large language models”, including the latest chatGPT, and which hinders them from “fully understanding” language is some real sense. These are a bunch of things the models still cannot do, or are at least very ill-equipped to do.</p>
+<ul>
+<li><p><strong>Relating multiple texts to each other</strong>. In their training, the models consume text either as one large stream, or as independent pieces of information. They may pick up patterns of commonalities in the text, but it has no notion of how the texts relate to “events” in the real world. In particular, if the model is trained on multiple news stories about the same event, it has no way of knowing that these texts all describe the same thing, and it cannot differentiate it from several texts describing similar but unrelated events. In this sense, the models cannot really form (or are really not equipped to form) a coherent and complete world view from all the text they “read”. </p>
+</li>
+<li><p><strong>A notion of time</strong>. Similarly, the models don’t have a notion of which events <em>follow</em> other events in their training stream. They don’t really have a notion of time at all, besides maybe explicit mentions of time. So it may learn the local meaning of expressions like “Obama became president in 2009”, and “reason” about other explicitly dated things that happened before or after this. But it cannot understand the flow of time in the sense that if it reads (in a separate text) that “Obama is the current president of the united state” and yet in a third text that “Obame is no longer the president”, which of these things follow one another, and what is true <em>now</em>. It can concurrently “believe” that both “Obame is the current president of the US”, “Trump is the current president of the US” and “Biden is the current president of the US” are all valid statements. Similarly, it really has no practical way of interpreting statments like “X is the latest album by Y” and how they stand in relation to each other.</p>
+</li>
+<li><p><strong>Knowledge of Knowledge</strong> The models don’t really “know what they know”. They don’t even know what “knowing” is. All they do is guess the next token in a stream, and this next token guess may be based on either well founded acuired knowledge, or it may be a complete guess. The models’ training and training data have no explicit mechanism for distingushing these two cases, and certainly don’t have explicit mechanisms to act differently according to them. This is manifested in the well documented tendency to “confidently make stuff up”. The learning-from-demonstraiton (RLHF) made the models “aware” that some answers should be treated with caution, and maybe the models even learned to associate this level of caution with the extent to which some fact, entity or topic were covered in their training data, or the extent to which the data is reflected in their internal weights. So in that sense they exhibit <em>some</em> knowledge of knowledge. But when they get over this initial stage of refuding to answer, and go into “text generation mode”, they “lose” all such knowledge of knowledge, and, very quickly tranistion into “making stuff up” mode, also on things that it clearly stated (in a different stage) that is has no knowledge of.</p>
+</li>
+<li><p><strong>Numbers and math</strong> The models are really ill-equipped to perform math. Their basic building blocks are “word pieces”, which don’t really correspond to numbers in any convenient base. They also don’t have any appropriate way of learning the relations between different numebrs (such as the +1 or “greater than” relations) in any meaningful and consistent way. LLMs manage to perform semi-adequately on some questions involving numbers, but really there are <strong>so much better</strong> ways to go about representing numbers and math than the mechanisms we gave LLM, that it is surprising they can do anything at all. But I suspect they will not get very far without some more explicit modeling.</p>
+</li>
+<li><p><strong>Rare events, high recall setups, high coverage setups:</strong> By their nature, the models focus on the common and probable cases. This makes me immediately suspicious about their ability to learn from rare events in the data, or to recall rare occurances, or to recall all occurances. Here I am less certain than in the other points: they might be able to do it. But I am currently skeptical.</p>
+</li>
+<li><p><strong>Data hunger</strong> This is perhaps <strong>the biggest technical issue</strong> I see with current large language models: they are extremely data hungry. To achieve their impressive performance, they were trained on trillions of words. The obvious “<strong>…and humans learn from a tiny fraction of this</strong>“  is of course true, but not very interesting to me on its own: so what? we don’t have to mimick humans to be useful. There are other implications though, that I find to be very disturbing: <strong>Most human languages don’t have so much data</strong>, certainly not data vailable in digital form. </p>
+<p><strong>Why is this significant?</strong> Because it means that we will be hard-pressed to replicate the incredible English understanding results that we have now for <strong>other languages</strong>, such as my native language Hebrew, or even to more common ones like German, French or Arabic, or even Chinese or Hindi (I don’t even consider so called “low resource” language like the many african and phillipinian ones). </p>
+<p>We can get a lot of data in these language, but not <em>so much</em> data. Yes, with “instruct training” we may need less data. But then the instruction data needs to be created: this is a huge undertaking for each new language we want to add. Additionally, if we believe (and I do) that training on code + language is significant, this is another <strong>huge</strong> barrirer for achieving similar models for languages other than English.</p>
+<p><strong>Can’t this be solved by translation?</strong> after all, we have great progress also in machine translation. We can translate to English, run the model there, and then translate back. Well, yes, we could. <strong>But this will work only at a very superficial level</strong>. Different languages come from different geographical regions, and these regions have their local cultures, norms, stories, events, and so on. These differ from the cultures, norms, stories and events of English speaking geographies in various ways. Even a simple concept such as “a city” differs across communities and geographies, not to mention concepts such as “politeness” or “violence”. Or “just” “factual” knowledge about certain people, historic events, significant places, plants, customs, etc. These will not be reflected in the English training data, and cannot be covered by translation.</p>
+<p>So, data hunger <em>is</em> a real problem, if we consider that we may want to have language understanding and “AI” technologies also outside of English.</p>
+<p>For those of us who want to worry about social implications, this combination of data-hunger and English&#x2F;US-centrality is definitely a huge issue to consider.</p>
+</li>
+<li><p><strong>Modularity</strong>  At the end of the “common yet boring arguments” section above, I asked “<strong>how do we separate “core” knowledge about language and reasoning, from specific factual knowledge about “things”</strong>“. I think this is a major question to ask, and that solving it will go a long way towards making progress (if not “solving”) many of the other issues. If we can modularize and separate the “core language understanding and reasoning” component from the “knowledge” component, we may be able to do much better w.r.t to the data-hunger problem and the resulting cultural knowledge gaps, we may be able to better deal with and control biases and stereotypes, we may get knowledge-of-knowledge almost “for free”. (Many people are working on “retrieval augmented language models”. This may or may not be the right way to approach this problem. I tend to suspect there is a more fundamental approach to be found. But history has proven I don’t have great intuitions about such things.)</p>
+</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Large language models are amazing. Language modeling is not enough, but “current language models” are actually more than language models, and they can do much more than we expected.<br>This is still “not enough”, though, if we care about “inclusive” language understanding, and also if we don’t.  </p>
+<p>Transship from Prof. Yoav Goldberg <a target="_blank" rel="noopener" href="https://gist.github.com/yoavg/59d174608e92e845c8994ac2e234c8a9#file-llms-md">https://gist.github.com/yoavg/59d174608e92e845c8994ac2e234c8a9#file-llms-md</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Some-remarks-on-Large-Language-Models"><span class="toc-number">1.</span> <span class="toc-text">Some remarks on Large Language Models</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Yoav-Goldberg-January-2023"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Yoav Goldberg, January 2023</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-number">1.1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perfect-Language-Modeling-is-AI-Complete"><span class="toc-number">1.2.</span> <span class="toc-text">Perfect Language Modeling is AI-Complete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-large-language-model-won%E2%80%99t-solve-everything-x2F-anything"><span class="toc-number">1.3.</span> <span class="toc-text">Building a large language model won’t solve everything &#x2F; anything</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Natural-vs-Currated-Lanagueg-Modeling"><span class="toc-number">1.4.</span> <span class="toc-text">Natural vs Currated Lanagueg Modeling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What%E2%80%99s-still-missing"><span class="toc-number">1.5.</span> <span class="toc-text">What’s still missing?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Common-yet-boring-arguments"><span class="toc-number">1.5.1.</span> <span class="toc-text">Common-yet-boring arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So-what%E2%80%99s-missing-x2F-what-are-some-real-limitations"><span class="toc-number">1.6.</span> <span class="toc-text">So what’s missing &#x2F; what are some real limitations?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.7.</span> <span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&text=Some remarks on Large Language Models"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&is_video=false&description=Some remarks on Large Language Models"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Some remarks on Large Language Models&body=Check out this article: https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&title=Some remarks on Large Language Models"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&name=Some remarks on Large Language Models&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/06/03/LLM%E7%9A%84%E7%BC%BA%E7%82%B9%E4%B8%8E%E5%8F%8D%E6%80%9D/&t=Some remarks on Large Language Models"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Xian
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/tags/">Tag</a></li><!--
+    --><!--
+      --><li><a href="/categories/">Category</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+    --><!--
+      --><li><a href="/URL">LINK_NAME</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <!-- <span class="post-meta-divider">|</span> -->
+          <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span> -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec3a9556589a44fee5433ef79dd48591";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

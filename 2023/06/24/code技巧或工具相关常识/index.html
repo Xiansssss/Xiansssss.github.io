@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Everything I think valuable for usDefiniton clarification :what’s the difference between the “Dependencies” and the “Requirements”？“Dependencies” refer to external libraries or packages that your code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="code tricks&#x2F;senses&#x2F;basics">
+<meta property="og:url" content="https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/index.html">
+<meta property="og:site_name" content="Xian&#39;Trial Ground">
+<meta property="og:description" content="Everything I think valuable for usDefiniton clarification :what’s the difference between the “Dependencies” and the “Requirements”？“Dependencies” refer to external libraries or packages that your code">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-29T14:48:51.739Z">
+<meta property="article:author" content="Xian">
+<meta property="article:tag" content="something you should know">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/dragon.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/dragon.png">
+        
+      
+    
+    <!-- title -->
+    <title>code tricks/senses/basics</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/06/24/code%20complete%20Reading/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/16/markdown%E8%AF%AD%E6%B3%95demo%20%E5%BF%98%E4%BA%86%E5%B0%B1%E7%9C%8B%E7%9C%8B/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&text=code tricks/senses/basics"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&is_video=false&description=code tricks/senses/basics"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=code tricks/senses/basics&body=Check out this article: https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&name=code tricks/senses/basics&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&t=code tricks/senses/basics"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Everything-I-think-valuable-for-us"><span class="toc-number">1.</span> <span class="toc-text">Everything I think valuable for us</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definiton-clarification-what%E2%80%99s-the-difference-between-the-%E2%80%9CDependencies%E2%80%9D-and-the-%E2%80%9CRequirements%E2%80%9D%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">Definiton clarification :what’s the difference between the “Dependencies” and the “Requirements”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-use-Random-Seed-in-Machine-Learning"><span class="toc-number">1.0.2.</span> <span class="toc-text">Why use Random Seed in Machine Learning?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recommended-pre-reading-materials"><span class="toc-number">1.0.3.</span> <span class="toc-text">Recommended pre-reading materials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-to-better-debug-machine-learning-model"><span class="toc-number">1.0.4.</span> <span class="toc-text">how to better debug machine learning model</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        code tricks/senses/basics
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xian</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-23T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-06-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/something-you-should-know/">something you should know</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/something-you-should-know/" rel="tag">something you should know</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Everything-I-think-valuable-for-us"><a href="#Everything-I-think-valuable-for-us" class="headerlink" title="Everything I think valuable for us"></a>Everything I think valuable for us</h1><h3 id="Definiton-clarification-what’s-the-difference-between-the-“Dependencies”-and-the-“Requirements”？"><a href="#Definiton-clarification-what’s-the-difference-between-the-“Dependencies”-and-the-“Requirements”？" class="headerlink" title="Definiton clarification :what’s the difference between the “Dependencies” and the “Requirements”？"></a>Definiton clarification :what’s the difference between the “Dependencies” and the “Requirements”？</h3><p>“Dependencies” refer to external libraries or packages that your code relies on in order to function properly. “Requirements” typically refer to a specification of the minimum version of those dependencies that are necessary to run your code. In other words, “Requirements” tell the user what version of the “Dependencies” are needed for the code to work correctly.</p>
+<h3 id="Why-use-Random-Seed-in-Machine-Learning"><a href="#Why-use-Random-Seed-in-Machine-Learning" class="headerlink" title="Why use Random Seed in Machine Learning?"></a>Why use Random Seed in Machine Learning?</h3><p>We use random seed value while creating training and test data set. The goal is to make sure we get the same training and validation data set while we use different hyperparameters or machine learning algorithms in order to assess the performance of different models. </p>
+<h3 id="Recommended-pre-reading-materials"><a href="#Recommended-pre-reading-materials" class="headerlink" title="Recommended pre-reading materials"></a>Recommended pre-reading materials</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://csdiy.wiki/">cs self-learning guide</a> <code>// every newbie should scan through it. // </code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://youtu.be/3tIqpEmWMLI">c++ tutorial from the cherno on youtube</a> ：<code>// it&#39;s a great tutorial for beginners //  </code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://parathan.medium.com/the-difference-between-module-package-and-library-in-python-e876f79ab2d8">The difference between Module, Package and Library in Python</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://sspai.com/post/52980">colab basics</a> <code>// how to use colab to &quot;python&quot; //</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=tL1zltXuHO8">Quick Language Models using</a>  <code> // quick start using models //</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-uleG_Vecis">100+ Computer Science Concepts Explained</a> <code>// basic terms concepts //</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=443UNeGrFoM">How I program C</a>：  <code>// basics and principles for writing c // last time watched till 1:37:05 / 2:11:31</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=hZS96dwKvt0">How to be a git expert </a><code>// git basics and workflow tutorial //</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master">Awesome c++ leetcode solutions and program principels</a>   <code>// I was reading the part about programming style // </code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15240815/git-fatal-the-remote-end-hung-up-unexpectedly%22">why git push fails and shows up”fatal: The remote end hung up unexpectedly”</a> And <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15240815/git-fatal-the-remote-end-hung-up-unexpectedly/64565533#64565533">more</a></p>
+</li>
+</ul>
+<h3 id="how-to-better-debug-machine-learning-model"><a href="#how-to-better-debug-machine-learning-model" class="headerlink" title="how to better debug machine learning model"></a>how to better debug machine learning model</h3><ul>
+<li><p>Learn how to debug machine learning model ： <a target="_blank" rel="noopener" href="https://neptune.ai/blog/debugging-deep-learning-model-training">how to better debug machine learning model</a></p>
+<p>  Recap： Since the machine learning model can “seems to be good”, but you have to test them if you ignore some detailed errors in the code. Just create tests that assert that the neural network architecture looks the way it is supposed to, checking the number of layers, the total number of trainable parameters, the value range of the output, and so on.</p>
+</li>
+<li><p>Using “from jsonargparse import CLI” to automatically pass arguments into parameters</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Sure! Let<span class="string">&#x27;s say that you define the parameters look like this:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">** code **</span></span><br><span class="line"><span class="string">def prepare(</span></span><br><span class="line"><span class="string">    destination_path: Path = Path(&quot;data/alpaca&quot;), </span></span><br><span class="line"><span class="string">    tokenizer_path: Path = Path(&quot;checkpoints/lit-llama/tokenizer.model&quot;),</span></span><br><span class="line"><span class="string">    test_split_size: int = 2000,</span></span><br><span class="line"><span class="string">    max_seq_length: int = 256,</span></span><br><span class="line"><span class="string">    seed: int = 42,</span></span><br><span class="line"><span class="string">    mask_inputs: bool = False,  # as in alpaca-lora</span></span><br><span class="line"><span class="string">    data_file_name: str = DATA_FILE_NAME</span></span><br><span class="line"><span class="string">):..........</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">if __name__ == &quot;__main__&quot;:</span></span><br><span class="line"><span class="string">	CLI(main)</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">** code **</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Then you can use the command line like this ：</span></span><br><span class="line"><span class="string">python prepare_alpaca.py prepare --destination_path data/alpaca --tokenizer_path checkpoints/lit-llama/tokenizer.model --test_split_size 2000 --max_seq_length 256 --seed 42 --mask_inputs False --data_file_name alpaca_data_cleaned_archive.json</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">That means you can make &quot;passing the arguments into the parameters&quot; extremely flexible.</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Use Ctrl + - (macOS) keyboard shortcut to navigate back to the last edited location in VScode.</li>
+<li><a target="_blank" rel="noopener" href="https://deepai.org/machine-learning-glossary-and-terms/softmax-layer">softmax - you have to know how does it work</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.finxter.com/chatgpt-api-temperature/">what is the “temperature” of LLM and how to tweak it</a></li>
+<li><code>file=sys.stderr</code> is to separate error messages from regular output and redirect them to a separate file or stream for debugging purposes.</li>
+</ul>
+<p>E.g.<br><code>print(f&quot;Memory used: &#123;torch.cuda.max_memory_reserved() / 1e9:.02f&#125; GB&quot;, file=sys.stderr)</code></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://neptune.ai/blog/ml-model-debugging-and-tools">how to make sure your data is proper</a> &#x2F;&#x2F; <a target="_blank" rel="noopener" href="https://neptune.ai/blog/data-preprocessing-guide">A Comprehensive Guide to Data Preprocessing</a><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Everything-I-think-valuable-for-us"><span class="toc-number">1.</span> <span class="toc-text">Everything I think valuable for us</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definiton-clarification-what%E2%80%99s-the-difference-between-the-%E2%80%9CDependencies%E2%80%9D-and-the-%E2%80%9CRequirements%E2%80%9D%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">Definiton clarification :what’s the difference between the “Dependencies” and the “Requirements”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-use-Random-Seed-in-Machine-Learning"><span class="toc-number">1.0.2.</span> <span class="toc-text">Why use Random Seed in Machine Learning?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recommended-pre-reading-materials"><span class="toc-number">1.0.3.</span> <span class="toc-text">Recommended pre-reading materials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#how-to-better-debug-machine-learning-model"><span class="toc-number">1.0.4.</span> <span class="toc-text">how to better debug machine learning model</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&text=code tricks/senses/basics"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&is_video=false&description=code tricks/senses/basics"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=code tricks/senses/basics&body=Check out this article: https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&title=code tricks/senses/basics"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&name=code tricks/senses/basics&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/06/24/code%E6%8A%80%E5%B7%A7%E6%88%96%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3%E5%B8%B8%E8%AF%86/&t=code tricks/senses/basics"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Xian
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/tags/">Tag</a></li><!--
+    --><!--
+      --><li><a href="/categories/">Category</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+    --><!--
+      --><li><a href="/URL">LINK_NAME</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <!-- <span class="post-meta-divider">|</span> -->
+          <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span> -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec3a9556589a44fee5433ef79dd48591";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

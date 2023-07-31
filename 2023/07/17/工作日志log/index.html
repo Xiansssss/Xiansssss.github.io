@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="6.5-7.5整理并阅读llama模型文章 比较优缺点寻找低成本模型 LLaMA Accelerating LLaMA with Fabric: A Comprehensive Guide to Training and Fine-Tuning LLaMA：https:&#x2F;&#x2F;lightning.ai&#x2F;pages&#x2F;community&#x2F;tutorial&#x2F;accelerating-llama-with-f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tiest&gt;">
+<meta property="og:url" content="https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/index.html">
+<meta property="og:site_name" content="Xian&#39;Trial Ground">
+<meta property="og:description" content="6.5-7.5整理并阅读llama模型文章 比较优缺点寻找低成本模型 LLaMA Accelerating LLaMA with Fabric: A Comprehensive Guide to Training and Fine-Tuning LLaMA：https:&#x2F;&#x2F;lightning.ai&#x2F;pages&#x2F;community&#x2F;tutorial&#x2F;accelerating-llama-with-f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiansssss.github.io/issue1.png">
+<meta property="og:image" content="https://xiansssss.github.io/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/log1.png">
+<meta property="article:published_time" content="2023-07-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-17T09:41:45.387Z">
+<meta property="article:author" content="Xian">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiansssss.github.io/issue1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/dragon.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/dragon.png">
+        
+      
+    
+    <!-- title -->
+    <title>tiest&gt;</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&text=tiest&gt;"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&is_video=false&description=tiest&gt;"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=tiest&gt;&body=Check out this article: https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&name=tiest&gt;&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&t=tiest&gt;"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Issues-when-running-the-bard-chat"><span class="toc-number">1.</span> <span class="toc-text">Issues when running the bard chat</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        tiest&gt;
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xian</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-16T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-07-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Papers/">Papers</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/Papers/" rel="tag">Papers</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>6.5-7.5<br>整理并阅读llama模型文章 比较优缺点<br>寻找低成本模型</p>
+<p>LLaMA</p>
+<p>Accelerating LLaMA with Fabric: A Comprehensive Guide to Training and Fine-Tuning LLaMA：<a target="_blank" rel="noopener" href="https://lightning.ai/pages/community/tutorial/accelerating-llama-with-fabric-a-comprehensive-guide-to-training-and-fine-tuning-llama/">https://lightning.ai/pages/community/tutorial/accelerating-llama-with-fabric-a-comprehensive-guide-to-training-and-fine-tuning-llama/</a></p>
+<p>LLaMA-Adapter: Efficient Fine-tuning of LLaMA 🚀：<a target="_blank" rel="noopener" href="https://github.com/ZrrSkywalker/LLaMA-Adapter">https://github.com/ZrrSkywalker/LLaMA-Adapter</a></p>
+<p>StackLLaMA: A hands-on guide to train LLaMA with RLHF：<a target="_blank" rel="noopener" href="https://huggingface.co/blog/stackllama">https://huggingface.co/blog/stackllama</a></p>
+<p>LLaMA github repo：<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/llama">https://github.com/facebookresearch/llama</a><br>尝试huggingface使用llama小参数版本</p>
+<p>准备代码 准备数据集 上传数据集 数据集上传服务器需18h 阅读代码 阅读部署文档<br>colab数据上传失败 autodl服务器环境依赖解决失败 尝试不同环境 本地部署llama-7B成功 模型返回结果不稳定<br>偶有成功的返回但是效果很差<br>merge ReadON_Linea_Profile.md to linea repo<br>针对llama进行本地报错问题细节处理学习</p>
+<p>解决报错问题<br>解决数据传输问题<br>学习lit-llam<br>try:获取数据 数据预处理 构建新数据<br>except: figure out how to do that<br>  获取小规模数据集 预处理 文本处理 删去无意义的词句<br> 文本分割 构建json文件<br> 微调试错 修改finetune.py 报错 stack overflow及gpt无法协助处理 推测是数据量过小的问题<br> 获取更多数据<br>获取数据时每个contentid对应内容不一样 有些Nonetype及其他异常需手动测试处理<br>循环测试异常 捕获处理异常 修正数据集<br>获取3万条数据集</p>
+<p>微调模型 效果不容乐观<br>修正数据集 手动寻找影响模型分数的重要因素 编写脚本去除这些元素<br>继续微调 不断针对数个问题观察是否性能有提升<br>详细剖析prepared data,generate adpater, fine-tune adapater<br>清洗数据 尝试不同prompt效果<br>调整参数 重跑模型 效果有所提升<br>保留微调的参数<br>修改代码 调试模型<br>寻找生成式模型评价指标<br>尝试使用self-insturct<br>use gpt to do the summary, which makes our data become more precise. I wish<br>it can more or less improve the data, then improve the performance of the model<br>测试对比gpt4和bard回答效果</p>
+<p>调试bard api<br>解决部分报错<br>提出issue</p>
+<h3 id="Issues-when-running-the-bard-chat"><a href="#Issues-when-running-the-bard-chat" class="headerlink" title="Issues when running the bard chat"></a>Issues when running the bard chat</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from bardapi import ChatBard</span><br><span class="line">  </span><br><span class="line">chat = ChatBard(token=token,timeout=30, language=&#x27;en&#x27;)</span><br><span class="line">chat.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Error msg:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">KeyError                                  Traceback (most recent call last)</span><br><span class="line">/var/folders/y8/lsp6my6s0699tykr6ghm_my80000gn/T/ipykernel_51118/1340303370.py in </span><br><span class="line">      2 </span><br><span class="line">      3 chat = ChatBard(token=token,timeout=30, language=&#x27;en&#x27;)</span><br><span class="line">----&gt; 4 chat.start()</span><br><span class="line"></span><br><span class="line">/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/bardapi/chat.py in start(self)</span><br><span class="line">     95             response = self.bard.get_answer(user_input)</span><br><span class="line">     96 </span><br><span class="line">---&gt; 97         if response.get(&quot;images&quot;):</span><br><span class="line">     98              print(f&quot;&#123;Fore.BLUE&#125;&#123;Style.BRIGHT&#125;Chatbot: &#123;response[&#x27;content&#x27;]&#125; \n\n Image links: &#123;response[&#x27;images&#x27;]&#125;&#123;Fore.RESET&#125;&#123;Style.RESET_ALL&#125;&quot;)</span><br><span class="line">     99         else:</span><br><span class="line"></span><br><span class="line">KeyError: &#x27;images&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>I was trying to modify the code in the python module ‘bardapi’ chat.py, you can find where is your module by run this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import bardapi</span><br><span class="line">print(bardapi.__file__)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>but it doesn’t work since the module seems always stay at the original version. Then even if I tried the code below, the error still remains.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import importlib</span><br><span class="line">import bardapi</span><br><span class="line"># Make changes to my_module.py</span><br><span class="line"></span><br><span class="line"># Reload the module</span><br><span class="line">importlib.reload(bardapi)</span><br></pre></td></tr></table></figure>
+
+<p>Then I requested an issue on github. It has been fixed in the updated version.<br><img src="/issue1.png" alt="the github issue img"></p>
+<p>完成ReadON QA bot雏形 预计本周内完成 实现top100 feed 实现用户界面交互<br>11<br>12<br>9<br>9<br>8<br>10<br>9<br>10<br>12<br>12<br>10<br>10<br>8<br>8<br>8<br>8<br>7<br>6<br>9<br>8<br>5<br>7<br>4<br>8<br>8<br>9<br>7<br>4<br>6<br>10<br>9</p>
+<p>7.6-8.5</p>
+<p>尝试使用三元组形式构建数据，调用api接口进行实体关系抽取，后先尝试采用embedding实现文章索引<br>问题：不够精准 定位：相关文章没有不存在于数据集之中 执行：添加更多文章进行embedding<br>处理数据集，，构建prompt，代码实现demo<br>测试统计我们的数据在gpt token消费的预估额度<br><img src="/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/log1.png" alt="工作日志log"></p>
+<p>问题：先测试readon项目 执行：重新获取数据集</p>
+<p>测试波哥说的数个问题，问题集合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># questions :</span><br><span class="line"></span><br><span class="line"># who is the investor of ReadON?</span><br><span class="line"># how does pick work on ReadON?</span><br><span class="line"># what is the relationship between ReadON and conflux?</span><br><span class="line"># 1. readon这个项目最近的活动是什么？</span><br><span class="line"># 2. readon 最近的活跃度如何？</span><br><span class="line"># 3. 我应该最近参加readon 什么活动</span><br></pre></td></tr></table></figure>
+<p>问题：有些问题会因为未知因素response error 定位：网络问题&#x2F;访问频率</p>
+<p>新数据集效果显著：能够较好的回答关系问题，比如readon和conflux的关系，能够提到合作的一些东西，比如card mint相关信息，表示我们的索引能够提取到相应文章，也说明模型能够较好的从我们的feed里学习到有用的东西</p>
+<p>问题：网络不稳定 代理问题  执行：借用同学vpn进行测试，测试了7个，每个订阅的每个节点都进行了测试，除了非可用地区，效果不佳，目前使用美国和台湾省代理的稳定性较好 查看网络代理的相关文章，尝试添加代理内核重构代码</p>
+<p>问题：相应速度较慢 定位：索引时间+bard处理文章的时间加起来太长 执行：尝试先精炼文章内容再feed，效果不佳，gpt无法识别一些关键信息，不够精炼 执行2:尝试使用其他的索引方式ing 执行3: 找到一部分原因是bard回答问题的stream特点造成了返回结果是一次性呈现在用户面前的 思考如何把流式改成real-time</p>
+<p>提高timeout使得响应之前数据能够得到充分的处理</p>
+<p>7<br>8<br>7<br>8<br>9<br>6<br>8<br>4<br>8<br>10<br>9<br>5</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Issues-when-running-the-bard-chat"><span class="toc-number">1.</span> <span class="toc-text">Issues when running the bard chat</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&text=tiest&gt;"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&is_video=false&description=tiest&gt;"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=tiest&gt;&body=Check out this article: https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&title=tiest&gt;"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&name=tiest&gt;&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/17/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97log/&t=tiest&gt;"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Xian
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/tags/">Tag</a></li><!--
+    --><!--
+      --><li><a href="/categories/">Category</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+    --><!--
+      --><li><a href="/URL">LINK_NAME</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <!-- <span class="post-meta-divider">|</span> -->
+          <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span> -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec3a9556589a44fee5433ef79dd48591";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

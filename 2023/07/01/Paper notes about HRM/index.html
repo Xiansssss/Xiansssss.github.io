@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#x2e;&amp;#x6e;&amp;#121;&amp;#x61;&amp;#x6d;&amp;#x73;&amp;#x75;&amp;#x72;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#x72;&amp;#117;&amp;#103;&amp;#46;&amp;#x6e;&amp;#108;) D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper notes about Human Reasoning Module">
+<meta property="og:url" content="https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/index.html">
+<meta property="og:site_name" content="Xian&#39;Trial Ground">
+<meta property="og:description" content="Paper: Human Reasoning Modulelink:	human reasoning module Authors’Info:Enkhbold Nyamsuren (&amp;#x65;&amp;#x2e;&amp;#x6e;&amp;#121;&amp;#x61;&amp;#x6d;&amp;#x73;&amp;#x75;&amp;#x72;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#x72;&amp;#117;&amp;#103;&amp;#46;&amp;#x6e;&amp;#108;) D">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xiansssss.github.io/HRM2.jpg">
+<meta property="og:image" content="https://xiansssss.github.io/HRM3.jpg">
+<meta property="og:image" content="https://xiansssss.github.io/HRM4.jpg">
+<meta property="article:published_time" content="2023-06-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-08T06:45:55.081Z">
+<meta property="article:author" content="Xian">
+<meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiansssss.github.io/HRM2.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/dragon.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/dragon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Paper notes about Human Reasoning Module</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tag</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+     --><!--
+       --><li><a href="/URL">LINK_NAME</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/07/09/Paper%20notes%20about%20are%20LLM%20really%20logic/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/06/30/Build%20QA%20system%20by%20using%20Google%20Bard%20API/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&text=Paper notes about Human Reasoning Module"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&is_video=false&description=Paper notes about Human Reasoning Module"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Paper notes about Human Reasoning Module&body=Check out this article: https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&name=Paper notes about Human Reasoning Module&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&t=Paper notes about Human Reasoning Module"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paper-Human-Reasoning-Module"><span class="toc-number">1.</span> <span class="toc-text">Paper: Human Reasoning Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-of-the-HRM"><span class="toc-number">1.3.</span> <span class="toc-text">Architecture of the HRM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validation-Models"><span class="toc-number">1.4.</span> <span class="toc-text">Validation Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion-and-Conclusion"><span class="toc-number">1.5.</span> <span class="toc-text">Discussion and Conclusion</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Paper notes about Human Reasoning Module
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Xian</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-30T16:00:00.000Z" class="dt-published" itemprop="datePublished">2023-07-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Papers/">Papers</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="p-category" href="/tags/Papers/" rel="tag">Papers</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Paper-Human-Reasoning-Module"><a href="#Paper-Human-Reasoning-Module" class="headerlink" title="Paper: Human Reasoning Module"></a>Paper: Human Reasoning Module</h1><p>link:	<a target="_blank" rel="noopener" href="https://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=32CFA430A83B3069A4239DEB74F04FAB?doi=10.1.1.714.1165&rep=rep1&type=pdf">human reasoning module</a></p>
+<p>Authors’Info:<br>Enkhbold Nyamsuren (<a href="mailto:&#x65;&#x2e;&#x6e;&#121;&#x61;&#x6d;&#x73;&#x75;&#x72;&#x65;&#x6e;&#64;&#x72;&#117;&#103;&#46;&#x6e;&#108;">&#x65;&#x2e;&#x6e;&#121;&#x61;&#x6d;&#x73;&#x75;&#x72;&#x65;&#x6e;&#64;&#x72;&#117;&#103;&#46;&#x6e;&#108;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands<br>Niels A. Taatgen (<a href="mailto:&#110;&#x2e;&#97;&#46;&#116;&#x61;&#97;&#116;&#103;&#x65;&#110;&#x40;&#114;&#x75;&#x67;&#x2e;&#x6e;&#x6c;">&#110;&#x2e;&#97;&#46;&#116;&#x61;&#97;&#116;&#103;&#x65;&#110;&#x40;&#114;&#x75;&#x67;&#x2e;&#x6e;&#x6c;</a>) Department of Artificial Intelligence, University of Groningen, Nijenborgh 9, 9747 AG Groningen, Netherlands</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>这篇文章介绍了一种叫“Human Reasoning Module (HRM)”的框架，这是基于ACT-R实现的，ACT-R是一种人类认知结构的理论，这种认知模型可以预测诸如“学生思考算数问题的过程中，神经影像会展现出哪些活跃的部分”，详情可以参考此视频 <a target="_blank" rel="noopener" href="https://youtu.be/5_RqQ56MxPE">Adaptive Control of Thought – Rational ACT- R By: John R. Anderson</a>，而HRM可以简单理解为是ACT-R理论的computer simulation，同时也是对ACT-R理论的一个extension及工具实现 具体的几个模型如何工作和实现的再往下看.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>HRM的程序性知识结构定义了人类逻辑的语法，公理模式和推理规则等，HRM是基于知识块的，并且主张通过previous experience和real-time info推理并解决问题. 接下来就是HRM试图去解决的关于human reasoning的几个方面：</p>
+<ul>
+<li><p><strong>Inductive and deductive reasoning</strong></p>
+<p>  作者觉得人的推论应该是probabilistic的，也就是不能是确定性的fact，没有被世界证明正确的未必是不正确的，保持开放然后去追求truthfulness而不是该推论的falstiy</p>
+</li>
+<li><p><strong>Mental logic, mental models and bottom-up reasoning</strong></p>
+<p>  作者认为人类推理综合来看并不一定是自上而下的意识性的正式思考，心智逻辑和心智模型的理论百家争鸣，作者不排除这些理论的兼容性，也就是都为其所用，然后这个visual short-term memory (VSTM)就是自下而上的一种推理形式，可以说是动用了底层的人脑注意力，并不是一种归纳推理和其他推理形式。	</p>
+</li>
+<li><p><strong>Deterministic and probabilistic inferences</strong></p>
+</li>
+</ul>
+<p>HRM引入了一种简单有效的reasoning pipeline方式解决一些可能存在的冲突，基于视觉短时记忆推理的优先级比基于陈述性知识更高.</p>
+<h2 id="Architecture-of-the-HRM"><a href="#Architecture-of-the-HRM" class="headerlink" title="Architecture of the HRM"></a>Architecture of the HRM</h2><ul>
+<li><p><strong>Knowledge representation in declarative memory</strong><br>主要介绍了一下元组的表现形式和一些概念的定义设计</p>
+</li>
+<li><p><strong>Schema and inference types</strong><br>这个部分介绍了一下HRM采用了条件推理模式，同时设计了一些推理的规则，比如下方给出条件，假设成立，再看deduction是否make sense.<br>![Human Reasoning Module1](Human Reasoning Module1.jpg)</p>
+</li>
+<li><p><strong>Backward reasoning pipeline</strong><br>推理的pipleline如下，也就是说采用的手段优先级从高到低排列为：自下而上推理&gt;声明性检索&gt;自上而下推理<br><img src="/HRM2.jpg" alt="HRM2"></p>
+</li>
+<li><p><strong>Forward reasoning pipeline</strong></p>
+</li>
+</ul>
+<p>这里是讲HRM如何基于用户提供的query去检索相关规则并推理，这里的前向推理管道是基于用户提供的查询语句，从声明性内存中检索与查询语句匹配的前提规则，并根据多个标准选择规则。然后HRM使用这些规则进行推理，从而生成结论或推断.<br><img src="/HRM3.jpg" alt="HRM3"></p>
+<h2 id="Validation-Models"><a href="#Validation-Models" class="headerlink" title="Validation Models"></a>Validation Models</h2><p>Validation Models部分介绍了三个不同的实验任务模型，每个模型都用于复制人类行为，并根据人类表现数据进行验证。这些模型的目的是验证HRM的推理能力和有效性。</p>
+<p>第一个模型是一个简单的推理任务模型，用于演示HRM基于声明性内存中的推理规则的基本推理能力。该模型仅使用声明性知识，不需要其他模块，如视觉。该模型使用的推理策略仅限于声明性规则的检索。该模型演示了即使在简单的推理任务中，竞争和冲突的声明性知识也会影响结果的重要性。它显示了在任何逻辑推理任务中考虑声明性检索结果的不确定性的重要性。</p>
+<p>第二个模型是一个分类任务模型，用于演示HRM如何使用前向和后向推理来解决分类问题。该模型使用了视觉模块和声明性模块，以模拟人类在分类任务中的行为。该模型演示了HRM如何使用前向和后向推理来解决分类问题，并且可以在不同的分类任务中进行扩展。</p>
+<p>第三个模型是一个因果推理任务模型，用于演示HRM如何使用因果推理来解决因果关系问题。该模型演示了HRM如何使用因果推理来解决因果关系问题，并且可以在不同的因果推理任务中进行扩展。</p>
+<ul>
+<li><p><strong>Model of Casual Deduction Task</strong><br>这里假设我们提供一个描述因果关系的句子，例如”If <cause>, then <effect>“。然后HRM会从声明性内存中检索与这个句子匹配的前提规则，并根据多个标准选择规则。接下来HRM使用这些规则进行推理，来生成结论或推断。<br>这里就是第一个模型的工作流程，可以看出来是在四种逻辑形式Modus Ponens (MP)，Modus Tollens (MT)，Affirmation of the Consequent (AC)，和Denial of the Antecedent (DA)里做选择然后检索相应的规则。<br><img src="/HRM4.jpg" alt="HRM4"></effect></cause></p>
+</li>
+<li><p><strong>Model of Spatial Relations Task</strong></p>
+</li>
+</ul>
+<p>简单概括一下这个部分模型处理的过程：</p>
+<ol>
+<li><p>前提处理：模型首先接收四个前提，这些前提描述了物体之间的关系。模型使用这些前提来构建心理状态或形象，以表示前提中的物体。</p>
+</li>
+<li><p>心理状态构建：模型通过迭代地处理每个前提，逐步构建心理状态。在处理每个前提时，模型使用抽象对象来表示物体，并根据前提中的信息更新心理状态。</p>
+</li>
+<li><p>空间关系推导：通过构建好的心理状态，模型可以直接推导出两个查询物体之间的空间关系。模型利用心理状态中的信息来确定物体之间的关系，从而回答查询问题。</p>
+</li>
+</ol>
+<ul>
+<li><strong>Model of Bayesian-like Inference in Blicket Task</strong></li>
+</ul>
+<p>模型的推理策略：模型使用前向推理和后向推理相结合的方式进行推理。在前向推理中，模型根据观察到的方块放置情况和先前的知识进行推断。在后向推理中，模型根据观察到的结果和先前的知识来推断方块的属性。前向推理的步骤：模型首先根据观察到的方块放置情况进行前向推理。</p>
+<h2 id="Discussion-and-Conclusion"><a href="#Discussion-and-Conclusion" class="headerlink" title="Discussion and Conclusion"></a>Discussion and Conclusion</h2><p>模型的良好拟合结果挑战了人类推理中确定性和概率推理之间的传统垂直分割观点。鉴于人类记忆的不一致性和召回的不确定性，确定性推理可以变得具有概率性。这种模型的拟合结果对于我们理解人类推理过程中的底层认知过程提供了详细的解释。HRM展示了人类思维展示的不同推理面向的单一系统。作为认知架构的一部分，HRM有望成为探索人类思维深处和生物启发的有用的工具。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">Tag</a></li>
+         
+          <li><a href="/categories/">Category</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li>
+         
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paper-Human-Reasoning-Module"><span class="toc-number">1.</span> <span class="toc-text">Paper: Human Reasoning Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture-of-the-HRM"><span class="toc-number">1.3.</span> <span class="toc-text">Architecture of the HRM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validation-Models"><span class="toc-number">1.4.</span> <span class="toc-text">Validation Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discussion-and-Conclusion"><span class="toc-number">1.5.</span> <span class="toc-text">Discussion and Conclusion</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&text=Paper notes about Human Reasoning Module"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&is_video=false&description=Paper notes about Human Reasoning Module"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Paper notes about Human Reasoning Module&body=Check out this article: https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&title=Paper notes about Human Reasoning Module"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&name=Paper notes about Human Reasoning Module&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://xiansssss.github.io/2023/07/01/Paper%20notes%20about%20HRM/&t=Paper notes about Human Reasoning Module"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Xian
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/tags/">Tag</a></li><!--
+    --><!--
+      --><li><a href="/categories/">Category</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="https://github.com/Xiansssss">Projects</a></li><!--
+    --><!--
+      --><li><a href="/URL">LINK_NAME</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <!-- <span class="post-meta-divider">|</span> -->
+          <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span> -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ec3a9556589a44fee5433ef79dd48591";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
